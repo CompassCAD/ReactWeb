@@ -2,6 +2,16 @@ import React, { useState } from "react";
 import { GetLanguage, locales, SetLanguage, supportedLanguages } from "./LanguageHandler";
 import styles from '../styles/home.module.css'
 import ReactCountryFlag from "react-country-flag";
+
+const getCountryCode = (language: string): string => {
+    const languageToCountry: { [key: string]: string } = {
+        'ja': 'jp',
+        'en': 'us',
+        'sv': 'se'
+    };
+    return languageToCountry[language] || language;
+};
+
 const LanguageSwitcher = () => {
     const [languagePicker, showLanguagePicker] = useState<boolean>(false);
     return (
@@ -11,7 +21,7 @@ const LanguageSwitcher = () => {
                 onClick={() => showLanguagePicker(!languagePicker)}
             >
                 <ReactCountryFlag countryCode={
-                    GetLanguage() === 'en' ? 'us' : (GetLanguage() === 'sv' ? 'se' : GetLanguage())
+                    getCountryCode(GetLanguage())
                 } svg alt={`${GetLanguage} flag`} />
                 {locales[GetLanguage()].name}&nbsp;{languagePicker ? '▴': '▾'}
             </div>
@@ -23,9 +33,7 @@ const LanguageSwitcher = () => {
                             key={index}
                             onClick={() => {SetLanguage(language);showLanguagePicker(false);window.location.reload()}}
                         >
-                            <ReactCountryFlag countryCode={
-                                language === 'en' ? 'us' : (language === 'sv' ? 'se' : language)
-                            } svg />
+                            <ReactCountryFlag countryCode={getCountryCode(language)} svg />
                             {locales[language].name}
                         </div>
                     ))}

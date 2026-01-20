@@ -2,7 +2,7 @@ import { posix } from 'path';
 import React, { JSX } from 'react';
 import { text } from 'stream/consumers';
 
-export const supportedLanguages = ['en', 'nl', 'id', 'sv'].sort();
+export const supportedLanguages = ['en', 'nl', 'id', 'ja', 'sv'].sort();
 export const SetLanguage = (lang: string) => {
     const selectedLang = supportedLanguages.includes(lang) ? lang : 'en';
     localStorage.setItem('language', selectedLang);
@@ -565,6 +565,192 @@ export const locales : any = {
                         fillColor: "Warna Isi",
                         strokeColor: "Warna Garis",
                         enableStroke: "Aktifkan Garis",
+                    }
+                }
+            }
+        }
+    },
+    ja: {
+        name: "日本語",
+        general: {
+            yes: "はい",
+            no: "いいえ"
+        },
+        home: {
+            header: "複雑なツールの学習に時間を費やすのはもう終わり。あなたの「夢」を形にするデザインを、もっとシンプルに。",
+            descHero: "もしCADが、NotionやFigmaのように直感的なツールになったら？私たちは建築デザインにおける「パワーツール」の定義を再定義します。",
+            downloadButton: "プラットフォーム版をダウンロード",
+            inBrowserEditor: "ブラウザで起動",
+            header1Sub: "圧倒的に高速なCADソフトウェア。無料でシンプル、そしてミニマリストな設計。",
+            paragraph1Sub: "高価なPCやソフトウェアに手が届かなかった開発者たちが、情熱を込めて作り上げました。誰もが楽しめる設計環境をあなたに。",
+            littleNote1: "*WindowsおよびLinuxのみ対応。",
+            header2Sub: "デスクトップ版が動かない？ウェブ版ならいつでもどこでも利用可能です！",
+            littleNote2: "*画像は実際のソフトウェアとは異なる場合があります。",
+            header3Sub: "インドネシア発。CompassCADは100%インドネシア国内で開発されています！",
+            paragraph3Sub: "利用するだけで、開発者だけでなく、インドネシアのものづくり（Bangga Buatan Indonesia）を直接支援することに繋がります。",
+            littleNote3: "*CompassCADの画像は最終製品を代表するものではありません。「Bangga Buatan Indonesia」はインドネシア観光・創造経済省（Kemenparekraf）の登録商標です。"
+        },
+        editor: {
+            home: {
+                quickActions: "クイックアクション",
+                createNew: "新規作成",
+                importExisting: "既存ファイルのインポート",
+                clearEntireHistory: "履歴をすべて削除",
+                askBlueprint: "Blueprintに相談",
+                recents: "最近のプロジェクト",
+                blueprintIntro: "こんにちは！私はBlueprintです！",
+                blueprintDesc: "プロンプトからデザインを作成するお手伝いをします。何でも聞いてください！",
+                blueprintSuggestions: "または、こちらを試してみますか？",
+                bpGenerated: "Blueprint生成デザイン",
+                suggestions: {
+                    one: {
+                        shorthand: "🏠 2階建ての家",
+                        prompt: "2階建ての家を作成して"
+                    },
+                    two: {
+                        shorthand: "🚗 シンプルな車のデザイン",
+                        prompt: "車体やホイールを含めた、シンプルな車のデザインを作成して"
+                    },
+                    three: {
+                        shorthand: "🏢 ビルのフロアプラン",
+                        prompt: "家具や部屋のレイアウトを含めた、ビルのフロアプランを作成して"
+                    },
+                    four: {
+                        shorthand: "🛠️ ワークショップのレイアウト",
+                        prompt: "作業台や道具の配置を含めた、ワークショップのレイアウト図面を作成して"
+                    },
+                    five: {
+                        shorthand: "🏰 堀のあるお城",
+                        prompt: "塔や城壁、堀を備えたお城のデザインを作成して"
+                    }
+                },
+                blueprintPlaceholder: "Blueprint AIに質問、または作成依頼",
+                blueprintWarning: "AIが生成する内容は誤りや不正確な場合があります。Google AIのGeminiを搭載しています。",
+                clearHistoryModal: "履歴の削除",
+                text1Sure: "本当に履歴をすべて削除しますか？",
+                boldTextWarning: "この操作は取り消せません。",
+                viewInEditor: "このデザインをエディタで表示/編集",
+                nothingInHistory: "現在、履歴はありません。図面を作成するとここに表示されます。",
+                randomMesg: {
+                    morning: {
+                        one: "お疲れ様です。コーヒーは飲みましたか？ ☕",
+                        two: "おはようございます！一日の準備はいいですか？ 🌄",
+                        three: "おはよう！今日はどんなアイデアが浮かぶか楽しみです！ 🤩"
+                    },
+                    noon: {
+                        one: "この時間から何か始めますか？ 🧐",
+                        two: "ランチタイム！しっかり食べて、作業も捗らせましょう！ 😋",
+                        three: "居眠りしていませんよね？ 😴"
+                    },
+                    afternoon: {
+                        one: "まだ頑張っていますね？さあ、デザインしましょう！ 🗺️",
+                        two: "クリエイティビティを止めないで！ ✏️",
+                        three: "CAD作業にぴったりの時間です！ 📐"
+                    },
+                    evening: {
+                        one: "夜まで作業ですか？お疲れ様です。 🧐",
+                        two: "やり残したことはありませんか？ ⌚",
+                        three: "まだまだ元気ですね。その調子です 💪"
+                    },
+                    night: {
+                        one: "そろそろ寝る時間ではありませんか？ 🛌",
+                        two: "こんな時間にアイデアが降ってきましたか？ 😵‍💫",
+                        three: "カフェインがまだ効いているようですね。 ☕"
+                    },
+                    dawn: {
+                        one: "寝ようと思ったけど……やっぱり起きてます。 😴",
+                        two: "こんな深夜に名案が？ 😮‍💨",
+                        three: "後回しにしていたわけじゃないですよね……？ 🥲"
+                    }
+                }
+            },
+            main: {
+                newDesign: "新規デザイン",
+                openDesign: "デザインを開く",
+                menu: "メニュー",
+                standaloneTip: "ヒント: .ccadファイルの保存方法をお探しですか？「共有/書き出し」>「.ccadとして書き出し」から行えます。",
+                loading: {
+                    heading: "CompassCADを読み込み中...",
+                    subHeading: "準備ができるまで、少々お待ちください。"
+                },
+                betaWarning: "このエディタは現在ベータ版です。ボタンが動作しなかったり、UIに不具合がある場合があります。",
+                header: {
+                    goBackHome: "ホームに戻る",
+                    undo: "元に戻す",
+                    redo: "やり直し",
+                    share: "共有/書き出し",
+                    feedback: "フィードバックを送信",
+                    record: "動画を録画",
+                    recordPopup: {
+                        startRecording: "録画開始",
+                        stopRecording: "録画停止",
+                        micOff: "マイクをオンにする",
+                        micOn: "マイクをオフにする"
+                    },
+                    shareModal: {
+                        heading: "デザインの共有/書き出し",
+                        copyLink: "リンクをコピー",
+                        exportAsSvg: "SVGとして書き出し",
+                        exportAsCcad: "CCADとして書き出し",
+                        embedToSite: "サイトに埋め込み",
+                        preview: "プレビュー",
+                        previewDifferent: "プレビューは通常より引き伸ばされて見える場合があります",
+                        settings: "設定",
+                        padding: "余白",
+                        monochrome: "モノクロ",
+                        font: "フォント",
+                        export: "書き出し",
+                        nothingOnPreview: "プレビューするものがありません！"
+                    }
+                },
+                essential: {
+                    select: "選択",
+                    navigate: "ナビゲート",
+                    move: "移動",
+                    delete: "削除",
+                    addPoint: "点を追加",
+                    addLine: "線を追加",
+                    addRectangle: "長方形を追加",
+                    addCircle: "円を追加",
+                    addArc: "円弧を追加",
+                    addMeasure: "計測を追加",
+                    addLabel: "ラベルを追加",
+                    addImage: "画像を追加",
+                    addPolygon: "多角形を追加",
+                    addBoundbox: "バウンディングボックスを追加"
+                },
+                inspector: {
+                    header: "インスペクター",
+                    collapseToRight: "右にたたむ",
+                    expand: "展開",
+                    nothing: "コンポーネントを選択すると、詳細がここに表示されます。",
+                    properties: "プロパティ",
+                    hierarchy: "階層",
+                    searchInHiearchy: "階層内を検索",
+                    general: {
+                        active: "アクティブ",
+                        radius: "半径",
+                        color: "色",
+                        opacity: "不透明度",
+                        name: "名前",
+                        position: "位置",
+                        size: "サイズ",
+                        coverage: "弧の範囲"
+                    },
+                    text: {
+                        heading: "テキストプロパティ",
+                        text: "テキスト",
+                        fontSize: "フォントサイズ"
+                    },
+                    picture: {
+                        heading: "画像プロパティ",
+                        src: "ソース"
+                    },
+                    polygon: {
+                        heading: "多角形プロパティ",
+                        fillColor: "塗りつぶしの色",
+                        strokeColor: "線の色",
+                        enableStroke: "線を有効にする"
                     }
                 }
             }
