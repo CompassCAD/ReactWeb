@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import style from '../App.module.css';
 import '../styles/theme.css'
+import { getDeviceType } from './GetDevice';
 
 interface ToastProps {
     message: string;
@@ -96,8 +97,11 @@ export const ToastContainer: React.FC = () => {
 };
 
 export const toast = (message: string): Promise<void> => {
-    return new Promise((resolve) => {
-        showToast(message);
-        setTimeout(resolve, 5000);
-    });
+    if (getDeviceType() === "desktop") {
+        return new Promise((resolve) => {
+            showToast(message);
+            setTimeout(resolve, 5000);
+        });
+    }
+    return Promise.resolve();
 };

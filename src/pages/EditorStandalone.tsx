@@ -143,10 +143,10 @@ const StandaloneEditor = () => {
   const { id } = useParams<{ id: string }>();
   const canvas = useRef<HTMLCanvasElement>(null);
   const renderer = useRef<GraphicsRenderer | null>(null);
-  const [device, setDevice] = useState<DeviceType>("desktop");
+  const [device, setDevice] = useState<DeviceType>(getDeviceType());
   const [componentArray, setComponentArray] = useState<Component[]>([]);
   const [tool, setTool] = useState<number>(
-    RendererTypes.NavigationTypes.Select,
+    device === "desktop" ? RendererTypes.NavigationTypes.Select : RendererTypes.NavigationTypes.Navigate
   );
   const [designName, setDesignName] = useState<string>(
     getLocaleKey("editor.main.newDesign"),
@@ -273,7 +273,7 @@ const StandaloneEditor = () => {
         window.innerHeight,
       );
       InitializeInstance(renderer.current);
-      renderer.current.setMode(renderer.current.modes.Select);
+      renderer.current.setMode(device === "desktop" ? RendererTypes.NavigationTypes.Select : RendererTypes.NavigationTypes.Navigate);
       setLoading(false);
       toast(getLocaleKey("editor.main.betaWarning"));
     }
@@ -611,6 +611,7 @@ const StandaloneEditor = () => {
                 const content = event.target?.result;
                 if (typeof content === 'string' && renderer.current) {
                     const components: Component[] = JSON.parse(content);
+                    renderer.current!.logicDisplay!.components = [];
                     renderer.current.logicDisplay?.importJSON(components, renderer.current.logicDisplay!.components);
                     setComponentArray(renderer.current.logicDisplay!.components);
                     setComponent(null);
@@ -656,22 +657,57 @@ const StandaloneEditor = () => {
         <>
           {menu === true && (
             <div className={styles["mobile-menu"]}>
-              <div
-                className={styles["mobile-menu-button"]}
-                onClick={() => renderer.current?.undo()}
-              >
-                <img src={UndoSymbol}></img>
-                &nbsp;
-                <p>Undo</p>
-              </div>
-              <div
-                className={`${styles["mobile-menu-button"]} ${styles.nomargin}`}
-                onClick={() => renderer.current?.redo()}
-              >
-                <img src={RedoSymbol}></img>
-                &nbsp;
-                <p>Redo</p>
-              </div>
+                <div
+                    className={styles["mobile-menu-button"]}
+                    onClick={handleNewFile}
+                >
+                    <img src={NewFile}></img>
+                    &nbsp;
+                    <p>{getLocaleKey("editor.main.newDesign")}</p>
+                </div>
+                <div
+                    className={`${styles["mobile-menu-button"]}`}
+                    onClick={handleOpenFile}
+                >
+                    <img src={OpenFile}></img>
+                    &nbsp;
+                    <p>{getLocaleKey("editor.main.openDesign")}</p>
+                </div>
+                <div
+                    className={styles["mobile-menu-button"]}
+                    onClick={() => saveCCAD('ccad')}
+                >
+                    <img src={ExportToCCADIcon}></img>
+                    &nbsp;
+                    <p>{getLocaleKey("editor.main.header.shareModal.exportAsCcad")}</p>
+                </div>
+                <div
+                    className={`${styles["mobile-menu-button"]} ${styles.nomargin}`}
+                    onClick={() => saveSVG()}
+                >
+                    <img src={ExportSymbol}></img>
+                    &nbsp;
+                    <p>{getLocaleKey("editor.main.header.shareModal.exportAsSvg")}</p>
+                </div>
+                <br></br>
+                <hr></hr>
+                <br></br>
+                <div
+                    className={styles["mobile-menu-button"]}
+                    onClick={() => renderer.current?.undo()}
+                >
+                    <img src={UndoSymbol}></img>
+                    &nbsp;
+                    <p>{getLocaleKey("editor.main.header.undo")}</p>
+                </div>
+                <div
+                    className={`${styles["mobile-menu-button"]} ${styles.nomargin}`}
+                    onClick={() => renderer.current?.redo()}
+                >
+                    <img src={RedoSymbol}></img>
+                    &nbsp;
+                    <p>{getLocaleKey("editor.main.header.redo")}</p>
+                </div>
             </div>
           )}
         </>
@@ -693,8 +729,9 @@ const StandaloneEditor = () => {
         {device == "mobile" && (
           <>
             <HeaderButton
-              svgImage={Back}
-              title={getLocaleKey("editor.main.header.goBackHome")}
+              svgImage={FeedbackIcon}
+              title={getLocaleKey("editor.main.header.sendFeedback")}
+              func={() => window.open("https://form.typeform.com/to/sbjWyFKu", "_blank")}
             />
             <input
               className={styles["design-name"]}
@@ -1659,6 +1696,7 @@ const StandaloneEditor = () => {
             mobile={true}
             title="Navigate (q)"
             keyCode={RendererTypes.KeyCodes.Q}
+            isActive={tool === RendererTypes.NavigationTypes.Navigate}
             func={() =>
               renderer.current?.setMode(RendererTypes.NavigationTypes.Navigate)
             }
@@ -1668,6 +1706,7 @@ const StandaloneEditor = () => {
             mobile={true}
             title="Move (e)"
             keyCode={RendererTypes.KeyCodes.E}
+            isActive={tool === RendererTypes.NavigationTypes.Move}
             func={() =>
               renderer.current?.setMode(RendererTypes.NavigationTypes.Move)
             }
@@ -1677,6 +1716,7 @@ const StandaloneEditor = () => {
             mobile={true}
             title="Delete (t)"
             keyCode={RendererTypes.KeyCodes.T}
+            isActive={tool === RendererTypes.NavigationTypes.Delete}
             func={() =>
               renderer.current?.setMode(RendererTypes.NavigationTypes.Delete)
             }
@@ -1686,6 +1726,7 @@ const StandaloneEditor = () => {
             mobile={true}
             title="Add Point (a)"
             keyCode={RendererTypes.KeyCodes.A}
+            isActive={tool === RendererTypes.NavigationTypes.AddPoint}
             func={() =>
               renderer.current?.setMode(RendererTypes.NavigationTypes.AddPoint)
             }
@@ -1695,6 +1736,7 @@ const StandaloneEditor = () => {
             mobile={true}
             title="Add Line (s)"
             keyCode={RendererTypes.KeyCodes.S}
+            isActive={tool === RendererTypes.NavigationTypes.AddLine}
             func={() =>
               renderer.current?.setMode(RendererTypes.NavigationTypes.AddLine)
             }
@@ -1704,6 +1746,7 @@ const StandaloneEditor = () => {
             mobile={true}
             title="Add Circle (d)"
             keyCode={RendererTypes.KeyCodes.D}
+            isActive={tool === RendererTypes.NavigationTypes.AddCircle}
             func={() =>
               renderer.current?.setMode(RendererTypes.NavigationTypes.AddCircle)
             }
@@ -1713,6 +1756,7 @@ const StandaloneEditor = () => {
             mobile={true}
             title="Add Arc (f)"
             keyCode={RendererTypes.KeyCodes.F}
+            isActive={tool === RendererTypes.NavigationTypes.AddArc}
             func={() =>
               renderer.current?.setMode(RendererTypes.NavigationTypes.AddArc)
             }
@@ -1722,6 +1766,7 @@ const StandaloneEditor = () => {
             mobile={true}
             title="Add Rectangle (g)"
             keyCode={RendererTypes.KeyCodes.G}
+            isActive={tool === RendererTypes.NavigationTypes.AddRectangle}
             func={() =>
               renderer.current?.setMode(
                 RendererTypes.NavigationTypes.AddRectangle,
@@ -1733,6 +1778,7 @@ const StandaloneEditor = () => {
             mobile={true}
             title="Add Image (l)"
             keyCode={RendererTypes.KeyCodes.L}
+            isActive={tool === RendererTypes.NavigationTypes.AddPicture}
             func={() =>
               renderer.current?.setMode(
                 RendererTypes.NavigationTypes.AddPicture,
@@ -1744,6 +1790,7 @@ const StandaloneEditor = () => {
             mobile={true}
             title="Add Text (h)"
             keyCode={RendererTypes.KeyCodes.H}
+            isActive={tool === RendererTypes.NavigationTypes.AddLabel}
             func={() =>
               renderer.current?.setMode(RendererTypes.NavigationTypes.AddLabel)
             }
@@ -1753,6 +1800,7 @@ const StandaloneEditor = () => {
             mobile={true}
             title="Measure (z)"
             keyCode={RendererTypes.KeyCodes.Z}
+            isActive={tool === RendererTypes.NavigationTypes.AddMeasure}
             func={() =>
               renderer.current?.setMode(
                 RendererTypes.NavigationTypes.AddMeasure,

@@ -432,8 +432,11 @@ input[type="checkbox"]:checked {
 .toolbar-button:not(.mobile) {
     margin-bottom: 5px;
 }
-.toolbar-button:hover {
+.toolbar-button:not(.mobile):hover {
     background-color: var(--secondary);
+}
+.toolbar-button.mobile:hover {
+    background-color: none;
 }
 .toolbar-button img {
     -webkit-user-drag: none;
