@@ -134,6 +134,9 @@ export const locales : any = {
             },
             main: {
                 newDesign: "New Design",
+                openDesign: "Open Design",
+                menu: "Menu",
+                standaloneTip: "TIP: Are you looking for a way to save .ccad files? Go to Share/Export > Export as .ccad",
                 loading: {
                     heading: "Loading CompassCAD...",
                     subHeading: "Just wait, you'll be ready in a sec.",
@@ -314,6 +317,9 @@ export const locales : any = {
             },
             main: {
                 newDesign: "Nieuw ontwerp",
+                openDesign: "Open ontwerp",
+                menu: "Menu",
+                standaloneTip: "TIP: Ben je op zoek naar een manier om .ccad-bestanden op te slaan? Ga naar Delen/Exporteren > Exporteren als .ccad",
                 loading: {
                     heading: "CompassCAD laden...",
                     subHeading: "Even wachten, je bent zo klaar."
@@ -474,6 +480,9 @@ export const locales : any = {
             },
             main: {
                 newDesign: "Desain Baru",
+                openDesign: "Buka Desain",
+                menu: "Menu",
+                standaloneTip: "TIP: Ingin mencari dimana untuk menyimpan file .ccad? Pergi ke Bagikan/Ekspor > Ekspor sebagai .ccad",
                 loading: {
                     heading: "Memuat CompassCAD...",
                     subHeading: "Bentar lagi, nanti disiapin kok.",
@@ -662,6 +671,9 @@ export const locales : any = {
                 },
                 betaWarning: "Hej! Bara ett tips om att den här redigeraren fortfarande är i beta, så förvänta dig trasiga knappar och ett icke-fungerande användargränssnitt.",
                 newDesign: "Ny Design",
+                openDesign: "Öppna Design",
+                menu: "Meny",
+                standaloneTip: "TIPP: Du letar efter en metod att spara .ccad-filer? Gå till Dela/Exportera > Exportera som .ccad",
                 header: {
                     goBackHome: "Gå tillbaka hem",
                     undo: "Ångra",

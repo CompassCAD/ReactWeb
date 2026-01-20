@@ -24,7 +24,9 @@ import {
 } from "../engine/ComponentHandler";
 import RendererTypes from "../components/RendererTypes";
 import HeaderButton from "../components/HeaderButtons";
-import Back from "../assets/back.svg";
+import NewFile from '../assets/newLogic.svg'
+import OpenFile from '../assets/openLogic.svg'
+import Back from "../assets/menu.svg";
 import MenuImg from "../assets/menu.svg";
 import ToolbarButton from "../components/ToolbarButtons";
 import Select from "../assets/navigate.svg";
@@ -184,6 +186,7 @@ const StandaloneEditor = () => {
   const [inspectorState, setInspectorState] = useState<InspectorTabState>(
     InspectorTabState.Inspector,
   );
+  const [miscMenu, setMiscMenu] = useState<boolean>(false);
   const [debugMode, setDebugMode] = useState<boolean>(false);
   const dragRef = useRef({
     initialMouseX: 0,
@@ -586,6 +589,44 @@ const StandaloneEditor = () => {
     console.log("[editor] resize is fired");
     setDevice(getDeviceType());
   });
+  const handleNewFile = () => {
+    const userConfirmed = window.confirm("Are you sure you want to create a new file? Unsaved changes will be lost.");
+    if (userConfirmed && renderer.current) {
+      renderer.current.logicDisplay!.components = [];
+      setComponentArray([]);
+      setComponent(null);
+      toast(getLocaleKey("editor.main.newDesign"));
+    }
+  }
+  const handleOpenFile = () => {
+    const picker = document.createElement('input');
+    picker.type = 'file';
+    picker.accept = '.ccad,.qrocad';
+    picker.click();
+    picker.onchange = (e: any) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            try {
+                const content = event.target?.result;
+                if (typeof content === 'string' && renderer.current) {
+                    const components: Component[] = JSON.parse(content);
+                    renderer.current.logicDisplay?.importJSON(components, renderer.current.logicDisplay!.components);
+                    setComponentArray(renderer.current.logicDisplay!.components);
+                    setComponent(null);
+                    setDesignName(file.name.replace(/\.(ccad|qrocad)$/i, ''));
+                    nameInput.current!.value = file.name.replace(/\.(ccad|qrocad)$/i, '');
+                    setMiscMenu(false);
+                    toast("Your design has been loaded successfully!");
+                }
+            } catch (error) {
+                console.error("Error loading file:", error);
+                toast('An error occured while loading the file.')
+            }
+        }
+        reader.readAsText(file);
+    }
+  }
   return (
     <div className={styles.editor}>
       {isLoading == true && (
@@ -612,7 +653,7 @@ const StandaloneEditor = () => {
         </>
       )}
       {device === "mobile" && (
-        <Fragment>
+        <>
           {menu === true && (
             <div className={styles["mobile-menu"]}>
               <div
@@ -633,17 +674,27 @@ const StandaloneEditor = () => {
               </div>
             </div>
           )}
-        </Fragment>
+        </>
+      )}
+      {device === "desktop" && (
+        <>
+            {miscMenu && (
+                <div className={styles["desktop-misc-menu"]}>
+                    <div className={styles["desktop-misc-menu-item"]} onClick={handleNewFile}><img src={NewFile}></img>{getLocaleKey("editor.main.newDesign")}</div>
+                    <div className={styles["desktop-misc-menu-item"]} onClick={handleOpenFile}><img src={OpenFile}></img>{getLocaleKey("editor.main.openDesign")}</div>
+                    <div className={styles["desktop-misc-menu-tip"]}>{getLocaleKey("editor.main.standaloneTip")}</div>
+                </div>
+            )}
+        </>
       )}
       <div
         className={`${styles.header} ${device === "mobile" ? styles.mobile : ""}`}
       >
         {device == "mobile" && (
-          <Fragment>
+          <>
             <HeaderButton
               svgImage={Back}
               title={getLocaleKey("editor.main.header.goBackHome")}
-              func={() => (window.location.href = "/editor")}
             />
             <input
               className={styles["design-name"]}
@@ -661,15 +712,15 @@ const StandaloneEditor = () => {
               title="Menu"
               func={() => setMenu(menu ? false : true)}
             />
-          </Fragment>
+          </>
         )}
         {device == "desktop" && (
           <div className={styles["desktop-header"]}>
             <div className={styles["header-left"]}>
               <HeaderButton
                 svgImage={Back}
-                title={getLocaleKey("editor.main.header.goBackHome")}
-                func={() => (window.location.href = "/editor")}
+                title={getLocaleKey("editor.main.menu")}
+                func={() => setMiscMenu(miscMenu ? false : true)}
               />
               <input
                 className={styles["design-name"]}
