@@ -2,7 +2,7 @@ import { posix } from 'path';
 import React, { JSX } from 'react';
 import { text } from 'stream/consumers';
 
-export const supportedLanguages = ['en', 'nl', 'id', 'ja', 'sv'].sort();
+export const supportedLanguages = ['en', 'fr', 'nl', 'id', 'ja', 'sv'].sort();
 export const SetLanguage = (lang: string) => {
     const selectedLang = supportedLanguages.includes(lang) ? lang : 'en';
     localStorage.setItem('language', selectedLang);
@@ -219,6 +219,192 @@ export const locales : any = {
                         fillColor: "Fill Color",
                         strokeColor: "Stroke Color",
                         enableStroke: "Enable Stroke",
+                    }
+                }
+            }
+        }
+    },
+    fr: {
+        name: "Français",
+        general: {
+            yes: "Oui",
+            no: "Non"
+        },
+        home: {
+            header: "Concevez vos rêves sans perdre de temps à apprendre des outils complexes. Il est temps de simplifier votre approche du design.",
+            descHero: "Imaginez si la CAO devenait aussi simple que les outils que nous utilisons aujourd'hui comme Notion ou Figma. Nous redéfinissons ce que signifie « outil de précision » pour l'architecture.",
+            downloadButton: "Télécharger pour votre plateforme",
+            inBrowserEditor: "Éditeur en ligne",
+            header1Sub: "Un logiciel de CAO ultra-rapide. Gratuit, simple et minimaliste.",
+            paragraph1Sub: "Conçu avec passion par des développeurs fauchés pour ceux qui n'ont pas forcément un ordinateur de compétition, mais qui veulent créer.",
+            littleNote1: "*Uniquement disponible pour Windows et Linux.",
+            header2Sub: "Pas de version de bureau ou ça ne fonctionne pas ? Utilisez la version web !",
+            littleNote2: "*Les images peuvent différer du logiciel final.",
+            header3Sub: "Vous aimez l'Indonésie ? CompassCAD est 100% fabriqué en Indonésie !",
+            paragraph3Sub: "Vous ne soutenez pas seulement les développeurs, vous soutenez aussi l'Indonésie, sans même vous en rendre compte !",
+            littleNote3: "*Les images de CompassCAD ne représentent pas le produit final. « Bangga Buatan Indonesia » est une marque déposée par le ministère du Tourisme et de l'Économie créative de la République d'Indonésie (Kemenparekraf)."
+        },
+        editor: {
+            home: {
+                quickActions: "Actions rapides",
+                createNew: "Créer un nouveau",
+                importExisting: "Importer un fichier",
+                clearEntireHistory: "Effacer tout l'historique",
+                askBlueprint: "Demander à Blueprint",
+                recents: "Récents",
+                blueprintIntro: "Salut ! Je suis Blueprint !",
+                blueprintDesc: "Je peux vous aider à créer des designs à partir de vos instructions. Demandez-moi n'importe quoi !",
+                blueprintSuggestions: "Ou essayez ces suggestions :",
+                bpGenerated: "Design généré par Blueprint",
+                suggestions: {
+                    one: {
+                        shorthand: "🏠 Une maison à 2 étages",
+                        prompt: "Crée-moi une maison à 2 étages"
+                    },
+                    two: {
+                        shorthand: "🚗 Un design de voiture simple",
+                        prompt: "Crée-moi un design de voiture simple, incluant le châssis et les roues"
+                    },
+                    three: {
+                        shorthand: "🏢 Un plan d'étage pour un bâtiment",
+                        prompt: "Crée-moi un plan d'étage pour un bâtiment, avec les pièces et les meubles"
+                    },
+                    four: {
+                        shorthand: "🛠️ Un plan pour un atelier",
+                        prompt: "Crée-moi un plan pour un atelier, incluant les établis et les outils"
+                    },
+                    five: {
+                        shorthand: "🏰 Un château avec des douves",
+                        prompt: "Crée-moi un château avec des douves, des tours et des remparts"
+                    }
+                },
+                blueprintPlaceholder: "Demandez ou créez avec l'IA Blueprint",
+                blueprintWarning: "Le contenu généré par l'IA peut être erroné ou inexact. Propulsé par Google AI Gemini.",
+                clearHistoryModal: "Effacer l'historique",
+                text1Sure: "Êtes-vous sûr de vouloir effacer tout l'historique ? ",
+                boldTextWarning: "Cette action est irréversible.",
+                viewInEditor: "Voir/Modifier ce design dans l'éditeur",
+                nothingInHistory: "Votre historique est vide pour aujourd'hui. Dessinez quelque chose et vos créations apparaîtront ici.",
+                randomMesg: {
+                    morning: {
+                        one: "Salut ! Un petit café ? ☕",
+                        two: "Bonjour ! Prêt à commencer la journée ? 🌄",
+                        three: "Salut ! Voyons ce que vous allez imaginer ! 🤩"
+                    },
+                    noon: {
+                        one: "On commence quelque chose à cette heure-ci ? 🧐",
+                        two: "C'est l'heure du déjeuner ! Mangez un morceau et créez ! 😋",
+                        three: "J'espère que vous ne dormez pas ! 😴"
+                    },
+                    afternoon: {
+                        one: "Toujours là ? Et si on dessinait ? 🗺️",
+                        two: "Laissez parler votre créativité ! ✏️",
+                        three: "Le moment idéal pour faire de la CAO ! 📐"
+                    },
+                    evening: {
+                        one: "Vous travaillez encore le soir ? 🧐",
+                        two: "Un projet de dernière minute ? ⌚",
+                        three: "Encore d'attaque ? Continuez comme ça ! 💪"
+                    },
+                    night: {
+                        one: "Vous ne devriez pas dormir ? 🛌",
+                        two: "Une illumination nocturne ? 😵‍💫",
+                        three: "Apparemment, votre dose de caféine est inépuisable. ☕"
+                    },
+                    dawn: {
+                        one: "Je vais me coucher... ah non, tant pis. 😴",
+                        two: "Des idées à une heure aussi tardive ? 😮‍💨",
+                        three: "J'espère que ce n'est pas de la procrastination ! 🥲"
+                    },
+                }
+            },
+            main: {
+                newDesign: "Nouveau Design",
+                openDesign: "Ouvrir un Design",
+                menu: "Menu",
+                standaloneTip: "ASTUCE : Vous cherchez comment enregistrer vos fichiers .ccad ? Allez dans Partager/Exporter > Exporter en .ccad",
+                loading: {
+                    heading: "Chargement de CompassCAD...",
+                    subHeading: "Patientez un instant, tout sera prêt dans une seconde.",
+                },
+                betaWarning: "Hé ! Juste pour info, cet éditeur est encore en version bêta. Attendez-vous à quelques boutons cassés et des éléments d'interface capricieux.",
+                header: {
+                    goBackHome: "Retour à l'accueil",
+                    undo: "Annuler",
+                    redo: "Rétablir",
+                    share: "Partager/Exporter",
+                    feedback: "Envoyer un avis",
+                    record: "Enregistrer une vidéo",
+                    recordPopup: {
+                        startRecording: "Démarrer l'enregistrement",
+                        stopRecording: "Arrêter l'enregistrement",
+                        micOff: "Activer le micro",
+                        micOn: "Désactiver le micro"
+                    },
+                    shareModal: {
+                        heading: "Partager/Exporter le Design",
+                        copyLink: "Copier le lien",
+                        exportAsSvg: "Exporter en SVG",
+                        exportAsCcad: "Exporter en CCAD",
+                        embedToSite: "Intégrer à un site web",
+                        preview: "Aperçu",
+                        previewDifferent: "L'aperçu peut paraître plus étiré que d'habitude",
+                        settings: "Paramètres",
+                        padding: "Marge (Padding)",
+                        monochrome: "Monochrome",
+                        font: "Police",
+                        export: "Exporter",
+                        nothingOnPreview: "Il n'y a rien à afficher pour le moment !"
+                    }
+                },
+                essential: {
+                    select: "Sélectionner",
+                    navigate: "Naviguer",
+                    move: "Déplacer",
+                    delete: "Supprimer",
+                    addPoint: "Ajouter un point",
+                    addLine: "Ajouter une ligne",
+                    addRectangle: "Ajouter un rectangle",
+                    addCircle: "Ajouter un cercle",
+                    addArc: "Ajouter un arc",
+                    addMeasure: "Ajouter une mesure",
+                    addLabel: "Ajouter une étiquette",
+                    addImage: "Ajouter une image",
+                    addPolygon: "Ajouter un polygone",
+                    addBoundbox: "Ajouter une boîte englobante",
+                },
+                inspector: {
+                    header: "Inspecteur",
+                    collapseToRight: "Réduire à droite",
+                    expand: "Agrandir",
+                    nothing: "Sélectionnez un composant pour voir ses détails ici.",
+                    properties: "Propriétés",
+                    hierarchy: "Hiérarchie",
+                    searchInHiearchy: "Rechercher dans la hiérarchie",
+                    general: {
+                        active: "Actif",
+                        radius: "Rayon",
+                        color: "Couleur",
+                        opacity: "Opacité",
+                        name: "Nom",
+                        position: "Position",
+                        size: "Taille",
+                        coverage: "Couverture de l'arc",
+                    },
+                    text: {
+                        heading: "Propriétés du texte",
+                        text: "Texte",
+                        fontSize: "Taille de police",
+                    },
+                    picture: {
+                        heading: "Propriétés de l'image",
+                        src: "Source",
+                    },
+                    polygon: {
+                        heading: "Propriétés du polygone",
+                        fillColor: "Couleur de remplissage",
+                        strokeColor: "Couleur du trait",
+                        enableStroke: "Activer le trait",
                     }
                 }
             }
