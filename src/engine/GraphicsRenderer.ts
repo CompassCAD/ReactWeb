@@ -211,7 +211,6 @@ export class GraphicsRenderer {
     }
     refreshSelectionTools() {
         if (this.selectedComponent !== null && this.logicDisplay?.components[this.selectedComponent]) {
-            this.drawComponentSize(this.logicDisplay?.components[this.selectedComponent]);
             const selectedComponent: Component = this.logicDisplay?.components[this.selectedComponent];
             const handles = this.getComponentHandles(selectedComponent);
             for (const handle of handles) {
@@ -250,7 +249,7 @@ export class GraphicsRenderer {
             const boxWidth = textWidth + 20;
             const dummyLine = component as Line;
             const boxX = (((dummyLine.x2 - dummyLine.x1) / 2 + dummyLine.x1) + this.cOutX) * this.zoom - (boxWidth/2);
-	        const boxY = ((dummyLine.y2 + this.cOutY) * this.zoom) + 7.5;
+            const boxY = ((dummyLine.y2 + this.cOutY) * this.zoom) - 30;
             this.context.fillStyle = this.selectedColor;
             this.context.beginPath();
             this.context.roundRect(boxX, boxY, boxWidth, 25, 5);
@@ -2176,7 +2175,8 @@ export class GraphicsRenderer {
     update() {
         this.offsetX = this.displayRef!.offsetLeft;
         this.offsetY = this.displayRef!.offsetTop;
-        this.zoom = this.targetZoom;
+        this.zoom = this.lerp(this.currentZoom, this.targetZoom, this.zoomSpeed);
+        this.currentZoom = this.zoom;
         this.updateCamera();
         this.clearGrid();
         if (this.showGrid)
@@ -2188,6 +2188,9 @@ export class GraphicsRenderer {
         this.drawAllComponents(this.logicDisplay!.components, 0, 0);
         if (this.temporaryComponentType != null)
             this.drawTemporaryComponent();
+        if (this.selectedComponent !== null && this.logicDisplay?.components[this.selectedComponent]) {
+            this.drawComponentSize(this.logicDisplay?.components[this.selectedComponent]);
+        }
         this.drawRules();
         this.refreshSelectionTools();
         if (this.recordingMode) {
