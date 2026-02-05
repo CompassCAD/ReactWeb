@@ -201,6 +201,7 @@ const StandaloneEditor = () => {
     const formattedSeconds = sec < 10 ? "0" + sec : sec;
     return `${minute}:${formattedSeconds}`;
   };
+  
   const toggleRecordingState = async () => {
     let interval;
     if (!isRecording) {
@@ -586,6 +587,14 @@ const StandaloneEditor = () => {
     console.log("[editor] resize is fired");
     setDevice(getDeviceType());
   });
+  window.addEventListener('keypress', (e: KeyboardEvent) => {
+    if (e.key === 'Delete') {
+      if (renderer.current) {
+        renderer.current.deleteComponent();
+        setComponent(null);
+      }
+    }
+  })
   const handleNewFile = () => {
     const userConfirmed = window.confirm("Are you sure you want to create a new file? Unsaved changes will be lost.");
     if (userConfirmed && renderer.current) {

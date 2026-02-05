@@ -10,6 +10,7 @@ import NavigateDragCursor from '../assets/cursors/navigate-drag.svg'
 import NavigateIdleCursor from '../assets/cursors/navigate-idle.svg'
 import Nwse1 from '../assets/cursors/nwse-1.svg'
 import Nwse2 from '../assets/cursors/nwse-2.svg'
+import RendererTypes from "../components/RendererTypes";
 
 let lastTime = performance.now();
 let frameCount = 0;
@@ -2129,6 +2130,7 @@ export class GraphicsRenderer {
             this.logicDisplay.components.splice(this.temporarySelectedComponent!, 1);
             this.saveState();
             this.notifyComponentChange();
+            this.setMode(RendererTypes.NavigationTypes.Select);
         }
     }
     setZoom(zoomFactor: number) {
@@ -2305,9 +2307,6 @@ export const InitializeInstance = (renderer: GraphicsRenderer) => {
     renderer.displayRef!.onkeydown = (e: KeyboardEvent) => {
         renderer.keyboard?.onKeyDown(e)
     }
-    renderer.keyboard?.addKeyEvent(true, KeyCodes.KeyCodes.DEL, () => {
-        renderer.deleteComponent();
-    }, {ctrl: false});
     renderer.displayRef!.addEventListener('mousemove', (e: any) => {
         // Ignore emulated mouse events from touch
         if (e.sourceCapabilities && e.sourceCapabilities.firesTouchEvents) {
