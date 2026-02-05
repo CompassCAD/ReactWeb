@@ -249,7 +249,7 @@ export class GraphicsRenderer {
             const boxWidth = textWidth + 20;
             const dummyLine = component as Line;
             const boxX = (((dummyLine.x2 - dummyLine.x1) / 2 + dummyLine.x1) + this.cOutX) * this.zoom - (boxWidth/2);
-            const boxY = ((dummyLine.y2 + this.cOutY) * this.zoom) - 30;
+            const boxY = ((dummyLine.y2 + this.cOutY) * this.zoom) + 8;
             this.context.fillStyle = this.selectedColor;
             this.context.beginPath();
             this.context.roundRect(boxX, boxY, boxWidth, 25, 5);
@@ -2175,7 +2175,7 @@ export class GraphicsRenderer {
     update() {
         this.offsetX = this.displayRef!.offsetLeft;
         this.offsetY = this.displayRef!.offsetTop;
-        this.zoom = this.lerp(this.currentZoom, this.targetZoom, this.zoomSpeed);
+        this.zoom = this.targetZoom;
         this.currentZoom = this.zoom;
         this.updateCamera();
         this.clearGrid();
