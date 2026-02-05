@@ -11,7 +11,7 @@ interface HeaderButton {
 }
 const ToolbarButton = (props: HeaderButton) => {
     document.addEventListener('keydown', (e: KeyboardEvent) => {
-        if ((e.which === props.keyCode || e.which === props.alternativeKeyCode) && props.func) {
+        if ((e.which === props.keyCode || e.which === props.alternativeKeyCode) && props.func && !e.ctrlKey && !e.metaKey && !e.altKey && !e.shiftKey) {
             if (
                 document.activeElement?.tagName == 'INPUT' ||
                 document.activeElement?.tagName == 'TEXTAREA'

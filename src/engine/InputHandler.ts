@@ -130,6 +130,7 @@ export class KeyboardHandler {
         this.keyEvents.push(keyEvent);
     }
     onKeyUp(e: KeyboardEvent) {
+        e.preventDefault();
         if (e.which === this.keys.CONTROL) {
             this.ctrlPressed = false;
         }
@@ -142,6 +143,7 @@ export class KeyboardHandler {
         }
     }
     onKeyDown(e: KeyboardEvent) {
+        e.preventDefault();
         if (e.which === this.keys.CONTROL) {
             this.ctrlPressed = true;
         }

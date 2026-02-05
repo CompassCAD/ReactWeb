@@ -296,6 +296,7 @@ const StandaloneEditor = () => {
     // This effect runs when the selected component changes in the renderer.
     const handleSelectionChange = () => {
       if (renderer.current && renderer.current.selectedComponent !== null) {
+        setComponent(null);
         const selected =
           renderer.current.logicDisplay!.components[
             renderer.current.selectedComponent
@@ -587,15 +588,6 @@ const StandaloneEditor = () => {
     console.log("[editor] resize is fired");
     setDevice(getDeviceType());
   });
-  window.addEventListener('keypress', (e: KeyboardEvent) => {
-    if (e.key === 'Delete') {
-      if (renderer.current) {
-        renderer.current.deleteComponent();
-        renderer.current.setMode(RendererTypes.NavigationTypes.Select);
-        setComponent(null);
-      }
-    }
-  })
   const handleNewFile = () => {
     const userConfirmed = window.confirm("Are you sure you want to create a new file? Unsaved changes will be lost.");
     if (userConfirmed && renderer.current) {

@@ -2306,12 +2306,21 @@ export const InitializeInstance = (renderer: GraphicsRenderer) => {
         // Always perform mouse up to clean states
         renderer.performAction(e, renderer.mouseAction.Up);
     }, { passive: false });
-    renderer.displayRef!.onkeyup = (e: KeyboardEvent) => {
+    document.onkeyup = (e: KeyboardEvent) => {
+        console.log('[canvas] key up', e.key);
         renderer.keyboard?.onKeyUp(e)
     }
-    renderer.displayRef!.onkeydown = (e: KeyboardEvent) => {
+    document.onkeydown = (e: KeyboardEvent) => {
+        console.log('[canvas] key down', e.key);
         renderer.keyboard?.onKeyDown(e)
     }
+    renderer.keyboard?.addKeyEvent(true, RendererTypes.KeyCodes.DEL, () => {
+        renderer.deleteComponent();
+        renderer.setMode(RendererTypes.NavigationTypes.Select);
+    }, {ctrl: false});
+    // More bootstraping code, yay :)
+    renderer.keyboard?.addKeyEvent(true, RendererTypes.KeyCodes.Z, () => renderer.undo(), {ctrl: true});
+    renderer.keyboard?.addKeyEvent(true, RendererTypes.KeyCodes.Y, () => renderer.redo(), {ctrl: true});  
     renderer.displayRef!.addEventListener('mousemove', (e: any) => {
         // Ignore emulated mouse events from touch
         if (e.sourceCapabilities && e.sourceCapabilities.firesTouchEvents) {
