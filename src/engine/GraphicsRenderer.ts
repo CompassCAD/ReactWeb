@@ -1153,43 +1153,13 @@ export class GraphicsRenderer {
     }
     drawGrid(camXoff: number, camYoff: number) {
         const gridSpacingAdjusted = this.gridSpacing * this.zoom;
-        let densityDivisor;
-        if (this.gridSpacing < 5) {
-            if (this.zoom <= 1) {
-                densityDivisor = 50;
-            } else if (this.zoom <= 2) {
-                densityDivisor = 25;
-            } else {
-                densityDivisor = 20;
-            }
-        }
-        else if (this.gridSpacing < 10) {
-            if (this.zoom < 1) {
-                densityDivisor = 6;
-            } else if (this.zoom <= 2) {
-                densityDivisor = 3;
-            } else {
-                densityDivisor = 1;
-            }
-        }
-        else if (this.gridSpacing < 20) {
-            if (this.zoom < 1) {
-                densityDivisor = 3;
-            } else {
-                densityDivisor = 1.5;
-            }
-        }
-        else if (this.gridSpacing < 50) {
-            if (this.zoom < 1) densityDivisor = 2;
-            else densityDivisor = 1;
-        }
-        else {
-            if (this.zoom < 1) {
-                densityDivisor = 2
-            } else {
-                densityDivisor = 1;
-            }
-        }
+        const densityDivisor = this.gridSpacing < 5 
+            ? Math.max(20, 50 / Math.max(this.zoom, 0.5))
+            : this.gridSpacing < 10
+            ? Math.max(1, 6 / Math.max(this.zoom, 0.5))
+            : this.gridSpacing < 20
+            ? Math.max(1, 3 / Math.max(this.zoom, 0.5))
+            : Math.max(1, 2 / Math.max(this.zoom, 0.5));
         const effectiveSpacing = gridSpacingAdjusted * densityDivisor;
         const leftBound = -this.displayWidth / 2;
         const rightBound = this.displayWidth / 2;

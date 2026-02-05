@@ -779,7 +779,28 @@ const StandaloneEditor = () => {
               />
               &nbsp;
               <p>{zoom.toFixed(3)}x</p>
-              &nbsp;&nbsp;
+                &nbsp;&nbsp;
+                <HeaderButton
+                svgImage={RulerSymbol}
+                title='Grid Settings'
+                />
+                <input type='number' 
+                defaultValue={renderer.current ? renderer.current.gridSpacing : 100} 
+                onChange={(e) => {
+                  if (renderer.current) {
+                  const value = parseFloat(e.target.value);
+                  if (value > 0) {
+                    renderer.current.gridSpacing = value;
+                  } else {
+                    e.target.value = renderer.current.gridSpacing.toString();
+                  }
+                  }
+                }}
+                min="0.001"
+                step="1"
+                className={styles['editor-header-input']} 
+                />
+              <b style={{userSelect: 'none'}}>cm</b>
               <HeaderButton
                 svgImage={RecordIcon}
                 title={getLocaleKey("editor.main.header.record")}

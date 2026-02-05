@@ -808,6 +808,16 @@ body {
 .editor-recents-none p {
     color: #676767;
 }
+.editor-header-input {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: var(--primary-background);
+    border: none;
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 12pt;
+    width: 40px;
+}
 .blueprint-container {
     background-color: var(--secondary);
     padding: 20px;
