@@ -1885,7 +1885,7 @@ export class GraphicsRenderer {
                     }
                 } else if (action === this.mouseAction.Down) {
                     if (this.temporarySelectedComponent !== null && this.logicDisplay?.components[this.temporarySelectedComponent]) {
-                        this.logicDisplay.components[this.temporarySelectedComponent].active = false;
+                        this.deleteComponent(this.temporarySelectedComponent);
                         this.saveState();
                     }
                 }
@@ -2120,6 +2120,14 @@ export class GraphicsRenderer {
 
                 this.tooltip = "Select (click to select/deselect)";
                 break;
+        }
+    }
+    deleteComponent(index: number) {
+        // we'll use aggressive deletion by removing it from their hierarchy and file fully
+        if (this.logicDisplay?.components[index]) {
+            this.logicDisplay.components.splice(index, 1);
+            this.saveState();
+            this.notifyComponentChange();
         }
     }
     setZoom(zoomFactor: number) {

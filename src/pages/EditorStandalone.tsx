@@ -813,7 +813,6 @@ const StandaloneEditor = () => {
                   window.open("https://form.typeform.com/to/sbjWyFKu", "_blank")
                 }
               />
-              <p>running on standalone editor</p>
             </div>
             <div className={styles["header-right"]}>
               <div
