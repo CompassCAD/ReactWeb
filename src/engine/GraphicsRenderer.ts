@@ -2,6 +2,7 @@ import { read } from "fs";
 import { Circle, Component, componentTypes, Line, Measure, Point, Rectangle, Shape, Label, Arc, Picture, Polygon, BoundBox } from "./ComponentHandler";
 import { KeyboardHandler, MouseHandler } from "./InputHandler";
 import { LogicDisplay } from "./LogicDisplay";
+import KeyCodes from '../components/RendererTypes'
 import DefaultCursor from '../assets/cursors/normal.svg'
 import CrosshairCursor from '../assets/cursors/crosshair.svg'
 import MoveCursor from '../assets/cursors/move.svg'
@@ -1885,7 +1886,7 @@ export class GraphicsRenderer {
                     }
                 } else if (action === this.mouseAction.Down) {
                     if (this.temporarySelectedComponent !== null && this.logicDisplay?.components[this.temporarySelectedComponent]) {
-                        this.deleteComponent(this.temporarySelectedComponent);
+                        this.deleteComponent();
                         this.saveState();
                     }
                 }
@@ -2122,10 +2123,10 @@ export class GraphicsRenderer {
                 break;
         }
     }
-    deleteComponent(index: number) {
+    deleteComponent() {
         // we'll use aggressive deletion by removing it from their hierarchy and file fully
-        if (this.logicDisplay?.components[index]) {
-            this.logicDisplay.components.splice(index, 1);
+        if (this.logicDisplay?.components[this.temporarySelectedComponent!]) {
+            this.logicDisplay.components.splice(this.temporarySelectedComponent!, 1);
             this.saveState();
             this.notifyComponentChange();
         }
@@ -2304,6 +2305,9 @@ export const InitializeInstance = (renderer: GraphicsRenderer) => {
     renderer.displayRef!.onkeydown = (e: KeyboardEvent) => {
         renderer.keyboard?.onKeyDown(e)
     }
+    renderer.keyboard?.addKeyEvent(true, KeyCodes.KeyCodes.DEL, () => {
+        renderer.deleteComponent();
+    }, {ctrl: false});
     renderer.displayRef!.addEventListener('mousemove', (e: any) => {
         // Ignore emulated mouse events from touch
         if (e.sourceCapabilities && e.sourceCapabilities.firesTouchEvents) {

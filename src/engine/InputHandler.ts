@@ -11,12 +11,12 @@ export class KeyboardEventCore {
         keyDown: boolean, 
         key: number,
         fx: () => void,
-        modifiers: KeyboardEventModifiers
+        modifiers?: KeyboardEventModifiers
     ) {
         this.keyDown = keyDown;
         this.key = key;
         this.fx = fx;
-        this.modifiers = modifiers || {};
+        this.modifiers = modifiers || { ctrl: false };
     }
 }
 
