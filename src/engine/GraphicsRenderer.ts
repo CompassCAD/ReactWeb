@@ -426,6 +426,9 @@ export class GraphicsRenderer {
         const snappedY = Math.round(worldY / gridSize) * gridSize;
         return (snappedY + this.cOutY) * this.zoom;
     }
+    lerp(a: number, b: number, t: number) {
+        return a + (b - a) * t;
+    }
     updateCamera() {
         this.cOutX = this.camX;
         this.cOutY = this.camY;
@@ -2134,7 +2137,7 @@ export class GraphicsRenderer {
         }
     }
     setZoom(zoomFactor: number) {
-        var newZoom = this.zoom * zoomFactor;
+        var newZoom = this.targetZoom * zoomFactor;
         console.log(newZoom)
 
         // Zoom interval control
