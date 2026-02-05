@@ -787,14 +787,16 @@ const StandaloneEditor = () => {
                 title='Grid Settings'
                 />
                 <input type='number' 
-                defaultValue={renderer.current ? renderer.current.gridSpacing : 100} 
+                defaultValue={renderer.current ? renderer.current.gridSpacing : 100}
+                onFocus={(e) => e.currentTarget.select()}
                 onChange={(e) => {
                   if (renderer.current) {
                   const value = parseFloat(e.target.value);
                   if (value > 0) {
-                    renderer.current.gridSpacing = value;
-                  } else {
-                    e.target.value = renderer.current.gridSpacing.toString();
+                  renderer.current.gridSpacing = value;
+                  e.currentTarget.value = value.toString();
+                  } else if (e.target.value !== '') {
+                  e.currentTarget.value = renderer.current.gridSpacing.toString();
                   }
                   }
                 }}

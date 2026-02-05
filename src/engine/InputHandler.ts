@@ -130,7 +130,12 @@ export class KeyboardHandler {
         this.keyEvents.push(keyEvent);
     }
     onKeyUp(e: KeyboardEvent) {
-        e.preventDefault();
+        if (document.activeElement?.tagName == 'INPUT' ||
+            document.activeElement?.tagName == 'TEXTAREA') {
+            return;
+        } else {
+            e.preventDefault();
+        }
         if (e.which === this.keys.CONTROL) {
             this.ctrlPressed = false;
         }
@@ -143,7 +148,13 @@ export class KeyboardHandler {
         }
     }
     onKeyDown(e: KeyboardEvent) {
-        e.preventDefault();
+        console.log('[keyboard] check active element', document.activeElement?.tagName);
+        if (document.activeElement?.tagName == 'INPUT' ||
+            document.activeElement?.tagName == 'TEXTAREA') {
+            return;
+        } else {
+            e.preventDefault();
+        }
         if (e.which === this.keys.CONTROL) {
             this.ctrlPressed = true;
         }
