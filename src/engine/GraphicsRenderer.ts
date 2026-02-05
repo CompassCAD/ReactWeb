@@ -2132,7 +2132,6 @@ export class GraphicsRenderer {
             this.logicDisplay.components.splice(this.temporarySelectedComponent!, 1);
             this.saveState();
             this.notifyComponentChange();
-            this.setMode(RendererTypes.NavigationTypes.Select);
         }
     }
     setZoom(zoomFactor: number) {

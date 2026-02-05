@@ -591,6 +591,7 @@ const StandaloneEditor = () => {
     if (e.key === 'Delete') {
       if (renderer.current) {
         renderer.current.deleteComponent();
+        renderer.current.setMode(RendererTypes.NavigationTypes.Select);
         setComponent(null);
       }
     }
