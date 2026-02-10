@@ -16,6 +16,11 @@ interface HomeButtonInterface {
     important?: boolean,
     onInteract?: () => void,
     children: React.ReactNode
+    style?: React.CSSProperties
+}
+enum EditorMode {
+    Polished, // this has the Home and the Base64-based URL
+    Classic // for devices like Chromebooks to enjoy the experience standalone
 }
 const isCrammed = () => {
     const minWidthForText = 1000; // adjust this value based on your needs
@@ -23,14 +28,16 @@ const isCrammed = () => {
 }
 const HomeButton = (props: HomeButtonInterface) => {
     return (
-        <button onClick={props.onInteract} className={`${styles['startpage-button']} ${props.important ? styles.important: ''}`}>
+        <button onClick={props.onInteract} className={`${styles['startpage-button']} ${props.important ? styles.important: ''}`} style={props.style}>
             {props.children}
         </button>
     )
 }
 const Home = () => {
     const [deviceType, setDeviceType] = useState(getDeviceType());
-    const [crammed, setCrammed] = useState(isCrammed())
+    const [crammed, setCrammed] = useState(isCrammed());
+    const [editorState, setEditorState] = useState<EditorMode>(EditorMode.Polished);
+    const [showEditorSelector, setShowEditorSelector] = useState(false);
     useEffect(() => {
         const handleResize = () => {
             setDeviceType(getDeviceType());
@@ -62,13 +69,17 @@ const Home = () => {
                                 &nbsp;
                                 {getLocaleKey('home.downloadButton')}
                             </HomeButton>
-                            <Link to='/editor'>
-                                <HomeButton>
-                                    <img src={TryIt} alt='Tryit Icon' width={24}/>
-                                    &nbsp;
-                                    {getLocaleKey('home.inBrowserEditor')}
-                                </HomeButton>
-                            </Link>
+                            <HomeButton style={{borderTopRightRadius: '5px', borderBottomRightRadius: '5px'}}>
+                                <img src={TryIt} alt='Tryit Icon' width={24}/>
+                                &nbsp;
+                                {getLocaleKey('home.inBrowserEditor')}
+                            </HomeButton>
+                            <HomeButton 
+                                style={{borderTopLeftRadius: '5px', borderBottomLeftRadius: '5px', marginLeft: '-10px'}}
+                                onInteract={() => setShowEditorSelector(!showEditorSelector)}
+                            >
+                                {showEditorSelector ? '▴ ': '▾ '}
+                            </HomeButton>
                         </div>
                     </div>
                     <div className={`${styles['hero-right']} ${crammed ? styles.crammed : ''}`}>
