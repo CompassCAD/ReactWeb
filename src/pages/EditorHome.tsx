@@ -173,23 +173,17 @@ const EditorHome = () => {
     const genAI = new GoogleGenAI({apiKey: process.env.REACT_APP_BLUEPRINT_API_KEY || ''});
 
     const sendMessage = async () => {
-        console.log('[home] sending message:', currentMessage);
         if (!currentMessage.trim()) return;
         
         setIsLoading(true);
+        // Create the new message history
         const newMessages: Message[] = [...messages, { role: 'user', content: currentMessage }];
         setMessages(newMessages);
         setCurrentMessage('');
 
         try {
-            const config = { responseMimeType: 'text/plain' };
-            const contents = [
-              {
-                role: 'user',
-                parts: [
-                  {
-                    text: `
-You are Blueprint, an AI assistant for CompassCAD, a web-based CAD editor.
+            const SYSTEM_PROMPT = `
+            You are Blueprint, an AI assistant for CompassCAD, a web-based CAD editor.
 You are designed to help users with their CAD designs, provide suggestions, and answer questions related to CompassCAD.
 You are in a conversation with a user who is using CompassCAD.
 
@@ -247,63 +241,85 @@ You must do it like this, instead of adding comments:
 In the JSON data, you are not allowed to provide comments, or else the parser will fail to parse your generated design.
 However, outside of the ccad block, you can provide comments and explanations, such as what you have added or what you have changed.
 When the user speaks in other languages than English, you must reply to them in that language. For example, a user requests for something in Dutch, you must reply in Dutch, and vice versa
-                    `
-                  }
-                ],
-              },
-              // Add previous conversation history for context
-              ...messages.map((msg) => ({
-                role: msg.role,
-                parts: [
-                  {
-                    text: msg.content,
-                  },
-                ],
-              })),
-              // Append the current message
-              {
-                role: 'user',
-                parts: [
-                  {
-                    text: currentMessage,
-                  },
-                ],
-              },
-            ];
+            `;
 
-            // Call the streaming API to load response chunks
-            const stream = await genAI.models.generateContentStream({
-                model: 'gemini-2.0-flash',
-                config,
-                contents,
+            const response = await fetch('https://ai.hackclub.com/proxy/v1/responses', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${process.env.REACT_APP_BLUEPRINT_API_KEY || ''}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    model: 'qwen/qwen3-32b',
+                    input: [
+                        // System instructions as the first user message per HC format
+                        {
+                            type: 'message',
+                            role: 'user',
+                            content: [{ type: 'input_text', text: SYSTEM_PROMPT }],
+                        },
+                        // Map existing messages to HC structure
+                        ...newMessages.map((msg) => ({
+                            type: 'message',
+                            role: msg.role,
+                            content: [{ 
+                                type: msg.role === 'user' ? 'input_text' : 'output_text', 
+                                text: msg.content 
+                            }],
+                        })),
+                    ],
+                    stream: true,
+                    max_output_tokens: 9000,
+                }),
             });
 
-            let assistantContent = '';
-            // Add an empty assistant message immediately for live updates
-            setMessages([...newMessages, { role: 'assistant', content: '' }]);
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
-            // Process and display streaming chunks as they arrive
-            for await (const chunk of stream) {
-                // Extract text from the first candidate's content parts
-                const newText = chunk.candidates?.[0]?.content?.parts?.[0]?.text || "";
-                assistantContent += newText;
-                console.log(newText);
-                setMessages((prevMessages) => {
-                    const updatedMessages = [...prevMessages];
-                    const lastMessageIndex = updatedMessages.length - 1;
-                    updatedMessages[lastMessageIndex] = {
-                        role: 'assistant',
-                        content: assistantContent,
-                    };
-                    return updatedMessages;
-                });
+            const reader = response.body?.getReader();
+            const decoder = new TextDecoder();
+            let assistantContent = '';
+
+            // Add placeholder for assistant
+            setMessages(prev => [...prev, { role: 'assistant', content: '' }]);
+
+            while (true) {
+                const { done, value } = await reader!.read();
+                if (done) break;
+
+                const chunk = decoder.decode(value);
+                const lines = chunk.split('\n');
+
+                for (const line of lines) {
+                    const cleanLine = line.trim();
+                    if (!cleanLine || !cleanLine.startsWith('data: ')) continue;
+                    
+                    const data = cleanLine.slice(6);
+                    if (data === '[DONE]') break;
+
+                    try {
+                        const parsed = JSON.parse(data);
+                        // HC proxy returns the text delta in choices[0].text or choices[0].delta.content
+                        // Based on your HC snippet, it seems to return a direct object
+                        const contentChunk = parsed.choices?.[0]?.text || parsed.text || "";
+                        
+                        assistantContent += contentChunk;
+
+                        setMessages((prevMessages) => {
+                            const updated = [...prevMessages];
+                            updated[updated.length - 1] = {
+                                role: 'assistant',
+                                content: assistantContent,
+                            };
+                            return updated;
+                        });
+                    } catch (e) {
+                        // Ignore partial JSON chunks
+                    }
+                }
             }
         } catch (error) {
-            console.error('Error sending message:', error);
-            setMessages([...newMessages, { 
-                role: 'assistant', 
-                content: 'Sorry, I encountered an error. Please try again.' 
-            }]);
+            console.error('Error:', error);
+            setMessages(prev => [...prev, { role: 'assistant', content: 'Connection error. Check CORS/API Key.' }]);
         } finally {
             setIsLoading(false);
         }
