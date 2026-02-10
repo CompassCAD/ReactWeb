@@ -46,6 +46,42 @@
     justify-content: space-between;
     width: 100%;
 }
+.editor-mode-selector {
+    position: absolute;
+    top: 470px;
+    left: 280px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    gap: 5px;
+    background-color: var(--secondary);
+    animation: slidein-from-bottom 0.2s ease;
+    backdrop-filter: blur(10px);
+}
+.editor-mode-option {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+}
+.editor-mode-option:hover {
+    background-color: var(--tertiary);
+    border-radius: 5px;
+}
+.editor-mode-option.active {
+    background-color: var(--tertiary);
+    border-radius: 5px;
+}
+.editor-mode-option .editor-mode-description {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+.editor-mode-option .editor-mode-description b {
+    color: var(--theme);
+    font-size: 14pt;;
+}
 .language-switcher-preview {
     background-color: var(--primary);
     padding: 10px;

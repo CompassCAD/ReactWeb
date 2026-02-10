@@ -50,6 +50,10 @@ const Home = () => {
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
+    const setEditorStateThing = (mode: EditorMode) => {
+        setShowEditorSelector(false);
+        setEditorState(mode);
+    }
     return (
         <div className={styles['home-container']}>
             <ReusableHeader />
@@ -69,17 +73,37 @@ const Home = () => {
                                 &nbsp;
                                 {getLocaleKey('home.downloadButton')}
                             </HomeButton>
-                            <HomeButton style={{borderTopRightRadius: '5px', borderBottomRightRadius: '5px'}}>
-                                <img src={TryIt} alt='Tryit Icon' width={24}/>
-                                &nbsp;
-                                {getLocaleKey('home.inBrowserEditor')}
-                            </HomeButton>
+                            <Link to={editorState == EditorMode.Polished ? '/editor' : '/editor/standalone'}>
+                                <HomeButton style={{borderTopRightRadius: '5px', borderBottomRightRadius: '5px', paddingBottom: '15px'}}>
+                                    <img src={TryIt} alt='Tryit Icon' width={24}/>
+                                    &nbsp;
+                                    {editorState == EditorMode.Polished ? getLocaleKey('home.inBrowserEditor') : 'Open Classic Editor'}
+                                </HomeButton>
+                            </Link>
                             <HomeButton 
                                 style={{borderTopLeftRadius: '5px', borderBottomLeftRadius: '5px', marginLeft: '-10px'}}
                                 onInteract={() => setShowEditorSelector(!showEditorSelector)}
                             >
                                 {showEditorSelector ? '▴ ': '▾ '}
                             </HomeButton>
+                            {showEditorSelector && (
+                                <div className={styles['editor-mode-selector']}>
+                                    <div className={styles['editor-mode-option'] + (editorState == EditorMode.Polished ? ' ' + styles['active'] : '')} onClick={() => setEditorStateThing(EditorMode.Polished)}>
+                                        <img src={TryIt} alt='Tryit Icon' width={24}/>
+                                        <div className={styles['editor-mode-description']}>
+                                            <b>Organized Editor</b>
+                                            <span>Great for organizing, sharing, iterating, or just keeping up</span>
+                                        </div>
+                                    </div>
+                                    <div className={styles['editor-mode-option'] + (editorState == EditorMode.Classic ? ' ' + styles['active'] : '')} onClick={() => setEditorStateThing(EditorMode.Classic)}>
+                                        <img src={TryIt} alt='Tryit Icon' width={24}/>
+                                        <div className={styles['editor-mode-description']}>
+                                            <b>Standalone Editor</b>
+                                            <span>The good ol' classic web editor! For Chromebooks or CompassCAD PWA</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
                     <div className={`${styles['hero-right']} ${crammed ? styles.crammed : ''}`}>
