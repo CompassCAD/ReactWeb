@@ -1,6 +1,7 @@
 import { DeviceType, getDeviceType } from '../components/GetDevice';
 import YesNoDialog from '../components/YesNoDialog';
 import styles from '../styles/editor.module.css'
+import homeStyles from '../styles/home.module.css'
 import CompassCADLogo from '../assets/logo.svg'
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { HistoryEntry } from './Editor';
@@ -408,7 +409,10 @@ When the user speaks in other languages than English, you must reply to them in 
                             {dialog?.children}
                         </YesNoDialog>
                     )}
-                    <div className={styles['editor-home-header']}>
+                    <div className={homeStyles['editor-home-header']}>
+                        <div className={homeStyles['header-beta']}>
+                            <span>Blueprint AI is temporarily down! We're sorry about that!</span>
+                        </div>
                         <img src={CompassCADLogo} alt='CompassCAD Logo' height={24} />
                     </div>
                     <br></br>
@@ -449,12 +453,12 @@ When the user speaks in other languages than English, you must reply to them in 
                             >
                                 {getLocaleKey('editor.home.clearEntireHistory')}
                             </MiniButtonClickable>
-                            <MiniButtonClickable 
+                            {/* <MiniButtonClickable 
                                 icon={BluePrintSymbol}
                                 onPress={() => {setIsBluePrintMode(isBluePrintMode ? false : true)}}
                             >
                                 {getLocaleKey('editor.home.askBlueprint')}
-                            </MiniButtonClickable>
+                            </MiniButtonClickable> */}
                         </div>
                         <br></br>
                         {isBluePrintMode && (
