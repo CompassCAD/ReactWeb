@@ -48,7 +48,18 @@ export const locales : any = {
             header: "Build your dreams without wasting time to learn complex tools. It's time to simplify your \"dream building\" design",
             descHero: "Imagine if CAD went as simple as the power tools we use today like Notion or even Figma. Except that, we can redefine what \"power tools\" means for architecture design",
             downloadButton: "Download for platform",
-            inBrowserEditor: "In-browser editor",
+            inBrowserEditor: "Open in-browser editor",
+            classicEdior: "Open Classic Editor",
+            editorSel: {
+                polished: {
+                    name: "Organized Editor",
+                    description: "Great for organizing, sharing, iterating, or just keeping up"
+                },
+                classic: {
+                    name: "Standalone Editor",
+                    description: "The good ol' classic web editor! For Chromebooks or CompassCAD PWA"
+                }
+            },
             header1Sub: "Blazingly fast CAD software. Free of charge, yet simple and minimalistic",
             paragraph1Sub: "Built from the hearts of broke developers who cannot afford a good computer and a CAD software, created for you to enjoy.",
             littleNote1: "*Only available for Windows and Linux.",
@@ -235,6 +246,17 @@ export const locales : any = {
             descHero: "Imaginez si la CAO devenait aussi simple que les outils que nous utilisons aujourd'hui comme Notion ou Figma. Nous redéfinissons ce que signifie « outil de précision » pour l'architecture.",
             downloadButton: "Télécharger pour votre plateforme",
             inBrowserEditor: "Éditeur en ligne",
+            classicEdior: "Ouvrir l'éditeur classique",
+            editorSel: {
+                polished: {
+                    name: "Éditeur Organisé",
+                    description: "Idéal pour organiser, partager, itérer ou simplement rester à jour."
+                },
+                classic: {
+                    name: "Éditeur Autonome",
+                    description: "Le bon vieil éditeur web classique ! Pour Chromebooks ou CompassCAD PWA."
+                }
+            },
             header1Sub: "Un logiciel de CAO ultra-rapide. Gratuit, simple et minimaliste.",
             paragraph1Sub: "Conçu avec passion par des développeurs fauchés pour ceux qui n'ont pas forcément un ordinateur de compétition, mais qui veulent créer.",
             littleNote1: "*Uniquement disponible pour Windows et Linux.",
@@ -421,11 +443,25 @@ export const locales : any = {
             descHero: "Stel je voor dat CAD net zo eenvoudig was als de krachtige tools die we vandaag gebruiken, zoals Notion of zelfs Figma. Alleen kunnen we dan opnieuw definiëren wat 'krachtige tools' betekent voor architectuurontwerp",
             downloadButton: "Downloaden voor platform",
             inBrowserEditor: "In-browser editor",
+            classicEdior: "Open Klassieke Editor",
+            editorSel: {
+                polished: {
+                    name: "Georganiseerde Editor",
+                    description: "Geweldig voor organiseren, delen, itereren of gewoon bijblijven"
+                },
+                classic: {
+                    name: "Standalone Editor",
+                    description: "De goede oude klassieke web-editor! Voor Chromebooks of CompassCAD PWA"
+                }
+            },
             header1Sub: "Razendsnelle CAD-software. Gratis, doch eenvoudig en minimalistisch",
             paragraph1Sub: "Gebouwd vanuit het hart van blutte ontwikkelaars die zich geen goede computer en CAD-software kunnen veroorloven, speciaal voor jou gemaakt om van te genieten.",
             littleNote1: "*Alleen beschikbaar voor Windows en Linux.",
             header2Sub: "Geen desktopversie of werkt het niet? We hebben altijd de webversie!",
-            littleNote2: "*Afbeeldingen kunnen afwijken van de daadwerkelijke software"
+            littleNote2: "*Afbeeldingen kunnen afwijken van de daadwerkelijke software",
+            header3Sub: "Hou je van Indonesië? CompassCAD is 100% volledig gemaakt in Indonesië!",
+            paragraph3Sub: "Je ondersteunt niet alleen direct de ontwikkelaars, je ondersteunt ook Indonesië, zonder dat je het doorhebt!",
+            littleNote3: "*Afbeeldingen van CompassCAD vertegenwoordigen niet het eindproduct. Bangga Buatan Indonesia is een handelsmerk van het Ministerie van Toerisme en Creatieve Economie van de Republiek Indonesië (Kemenparekraf)"
         },
         editor: {
             home: {
@@ -464,7 +500,7 @@ export const locales : any = {
                 blueprintPlaceholder: "Vraag of creëer met Blueprint AI",
                 blueprintWarning: "AI-gegenereerde inhoud kan onjuist of onnauwkeurig zijn. Aangedreven door Google AI's Gemini",
                 clearHistoryModal: "Geschiedenis wissen",
-                text1Sure: "Weet je zeker dat je de hele geschiedenis wilt wissen?",
+                text1Sure: "Weet je zeker dat je de hele geschiedenis wilt wissen? ",
                 boldTextWarning: "Deze actie kan niet ongedaan worden gemaakt.",
                 viewInEditor: "Bekijk/bewerk dit ontwerp in de editor",
                 nothingInHistory: "Je hebt vandaag niets in je geschiedenislijst staan. Maak wat tekeningen en je geschiedenis verschijnt hier.",
@@ -517,9 +553,27 @@ export const locales : any = {
                     redo: "Opnieuw doen",
                     share: "Delen/Exporteren",
                     feedback: "Feedback sturen",
+                    record: "Video opnemen",
+                    recordPopup: {
+                        startRecording: "Opname starten",
+                        stopRecording: "Opname stoppen",
+                        micOff: "Microfoon aanzetten",
+                        micOn: "Microfoon uitzetten"
+                    },
                     shareModal: {
                         heading: "Ontwerp delen/exporteren",
-                        copyLink: "Link kopiëren"
+                        copyLink: "Link kopiëren",
+                        exportAsSvg: "Exporteren als SVG",
+                        exportAsCcad: "Exporteren als CCAD",
+                        embedToSite: "Insluiten in website",
+                        preview: "Voorbeeld",
+                        previewDifferent: "Voorbeeld kan er uitgerekter uitzien dan normaal",
+                        settings: "Instellingen",
+                        padding: "Padding",
+                        monochrome: "Monochroom",
+                        font: "Lettertype",
+                        export: "Exporteren",
+                        nothingOnPreview: "Je hebt momenteel niets in het voorbeeld!"
                     }
                 },
                 essential: {
@@ -535,18 +589,23 @@ export const locales : any = {
                     addMeasure: "Maat toevoegen",
                     addLabel: "Label toevoegen",
                     addImage: "Afbeelding toevoegen",
-                    addPolygon: "Veelhoek toevoegen"
+                    addPolygon: "Veelhoek toevoegen",
+                    addBoundbox: "Begrenzingskader toevoegen",
                 },
                 inspector: {
                     header: "Inspector",
                     collapseToRight: "Invouwen naar rechts",
                     expand: "Uitvouwen",
                     nothing: "Selecteer een component; de details van je component verschijnen dan hier.",
+                    properties: "Eigenschappen",
+                    hierarchy: "Hiërarchie",
+                    searchInHiearchy: "Zoeken in hiërarchie",
                     general: {
                         active: "Actief",
                         radius: "Straal",
                         color: "Kleur",
                         opacity: "Doorzichtigheid",
+                        name: "Naam",
                         position: "Positie",
                         size: "Grootte",
                         coverage: "Boogdekking"
@@ -579,31 +638,40 @@ export const locales : any = {
         home: {
             header: "Buatlah mimpimu tanpa membuang waktu untuk belajar alat yang susah. Saatnya menyederhanakan desain \"bangunan impian\"",
             descHero: "Bayangkan kalau CAD menjadi semudah alat canggih kita pakai seperti Notion atau Figma. Kecuali itu, kita bisa mengartikan ulang apa itu \"alat canggih\" untuk desain arsitektur sipil.",
-            downloadButton: "Unduh untuk",
-            inBrowserEditor: "Editor dalam browser",
+            downloadButton: "Unduh untuk platform",
+            inBrowserEditor: "Buka editor dalam browser",
+            classicEdior: "Buka Editor Klasik",
+            editorSel: {
+                polished: {
+                    name: "Editor Teratur",
+                    description: "Bagus untuk mengatur, berbagi, iterasi, atau sekadar memantau"
+                },
+                classic: {
+                    name: "Editor Standalone",
+                    description: "Editor web klasik yang lama! Untuk Chromebook atau CompassCAD PWA"
+                }
+            },
             header1Sub: "Software CAD yang betul-betulnya cepat. Gratis, tetapi mudah dan minimalis",
             paragraph1Sub: "Dibuat dari hati seorang programmer biasa yang tidak bisa membeli komputer bagus dan software CAD, dibuat untukmu untuk dinikmati.",
-            littleNote1: "*Hanya ada di Windows dan Linux",
-            header2Sub: "Tidak ada versi desktop atau tidak bisa? Kita selalu punya versi web!",
-            littleNote2: "*Gambar tentu berbeda dari software sebenarnya",
-            header3Sub: "Suka tanah air? CompassCAD itu 100% dibuat di Indonesia!",
+            littleNote1: "*Hanya tersedia untuk Windows dan Linux.",
+            header2Sub: "Tidak ada versi desktop atau tidak bekerja? Kita selalu punya versi web!",
+            littleNote2: "*Gambar mungkin tampak berbeda dari software sebenarnya",
+            header3Sub: "Suka Indonesia? CompassCAD itu 100% dibuat di Indonesia!",
             paragraph3Sub: "Kamu tidak hanya mendukung developer, kamu juga mendukung Indonesia, tanpa sadar!",
-            littleNote3: "Gambar CompassCAD tidak menunjukkan produk final. Bangga Buatan Indonesia adalah merek dagang milik Kementerian Pariwisata dan Ekonomi Kreatif Republik Indonesia (Kemenparekraf)"
+            littleNote3: "*Gambar CompassCAD tidak menunjukkan produk final. Bangga Buatan Indonesia adalah merek dagang milik Kementerian Pariwisata dan Ekonomi Kreatif Republik Indonesia (Kemenparekraf)"
         },
         editor: {
             home: {
                 quickActions: "Aksi cepat",
                 createNew: "Buat baru",
-                importExisting: "Buka yang tersedia",
-                clearEntireHistory: "Hapus riwayat",
+                importExisting: "Impor yang sudah ada",
+                clearEntireHistory: "Hapus seluruh riwayat",
                 askBlueprint: "Tanya Blueprint",
                 recents: "Terbaru",
-                blueprintPlaceholder: "Tanya atau buat dengan Blueprint AI",
-                blueprintWarning: "Konten dibuat AI mungkin salah atau tidak akurat.",
-                blueprintIntro: "Hei! Aku Blueprint!",
-                blueprintDesc: "Aku bisa membantu kamu membuat desain berdasarkan pertanyaanmu. Tanya saja apa pun!",
+                blueprintIntro: "Hei di sana! Aku Blueprint!",
+                blueprintDesc: "Aku bisa membantu kamu membuat desain berdasarkan instruksimu. Tanya saja apa pun!",
                 blueprintSuggestions: "Atau coba saran ini:",
-                bpGenerated: "Desain dibuat Blueprint",
+                bpGenerated: "Desain yang dibuat Blueprint",
                 suggestions: {
                     one: {
                         shorthand: "🏠 Rumah dengan 2 lantai",
@@ -622,45 +690,47 @@ export const locales : any = {
                         prompt: "Buatlah aku rencana layout untuk bengkel, termasuk meja kerja dan alat"
                     },
                     five: {
-                        shorthand: "🏰 Sebuah kasta dengan parit",
-                        prompt: "Buatlah aku sebuah kasta dengan parit, termasuk menara dan dinding"
+                        shorthand: "🏰 Sebuah kastil dengan parit",
+                        prompt: "Buatlah aku sebuah kastil dengan parit, termasuk menara dan dinding"
                     }
                 },
-                clearHistoryModal: "Hapus riwayat",
-                text1Sure: "Yakin untuk menghapuskan seluruh riwayatmu? ",
-                boldTextWarning: "Aksi ini tidak bisa diundurkan!",
-                viewInEditor: "Lihat/sunting desain ini di editor",
-                nothingInHistory: "Kamu tidak mempunyai apa-apa di daftar riwayatmu. Buatlah desain dan riwayatmu akan muncul disini",
+                blueprintPlaceholder: "Tanya atau buat dengan Blueprint AI",
+                blueprintWarning: "Konten yang dibuat AI mungkin salah atau tidak akurat. Didukung oleh Gemini dari Google AI",
+                clearHistoryModal: "Hapus Riwayat",
+                text1Sure: "Apakah Anda yakin ingin menghapus seluruh riwayat? ",
+                boldTextWarning: "Tindakan ini tidak bisa dibatalkan.",
+                viewInEditor: "Lihat/edit desain ini di editor",
+                nothingInHistory: "Yah, kamu tidak punya apa-apa di daftar riwayat hari ini. Buatlah beberapa gambar dan riwayatmu akan muncul di sini.",
                 randomMesg: {
                     morning: {
-                        one: "Hey! Lo udah ngopi belom? ☕",
-                        two: "Pagi! Udah siap mulai hari? 🌄",
-                        three: "Pagi! Ayo liat lo brainstorm apa ini! 🤩"
+                        one: "Hei? Sudah minum kopi? ☕",
+                        two: "Selamat pagi! Siap untuk memulai harimu? 🌄",
+                        three: "Pagi! Mari kita lihat apa yang akan kamu curahkan! 🤩"
                     },
                     noon: {
-                        one: "Lo lagi gabut ya? 🧐",
-                        two: "Maem siang dulu, baru balik kesini! 😋",
-                        three: "Semoga ga tidur! 😴"
+                        one: "Memulai sesuatu di jam segini? 🧐",
+                        two: "Waktunya makan siang! Inginkan sesuatu dan bekerjalah di sini! 😋",
+                        three: "Aku harap kamu tidak sedang tidur! 😴"
                     },
                     afternoon: {
-                        one: "Masih bangun? Ayo desain! 🗺️",
-                        two: "Kreativitasnya dong, terusin! ✏️",
-                        three: "Waktunya perfect buat CAD! 📐"
+                        one: "Kamu masih bangun? Mari mendesain! 🗺️",
+                        two: "Biarkan kreativitas tetap mengalir! ✏️",
+                        three: "Waktu yang tepat untuk kerja CAD! 📐"
                     },
                     evening: {
-                        one: "Malem malem masih kerja? 🧐",
-                        two: "Ada sesuatu sebelom deadline ga? ⌚",
-                        three: "Lo masih kuat aja. Terusin. 💪"
+                        one: "Kamu masih bekerja di malam hari? 🧐",
+                        two: "Ada sesuatu yang mendadak? ⌚",
+                        three: "Namun kamu masih kuat. Teruskan 💪"
                     },
                     night: {
-                        one: "Bukannya lo harus tidur? 🛌",
-                        two: "Ga sengaja brainstorm? 😵‍💫",
-                        three: "Beuh, kafein lo ga pernah turun sama sekali ☕"
+                        one: "Bukankah seharusnya kamu tidur? 🛌",
+                        two: "Tanpa sengaja curah ide sekarang? 😵‍💫",
+                        three: "Namun, kafeinmu tidak pernah habis. ☕"
                     },
                     dawn: {
-                        one: "Gue mau tidur, eh gajadi 😴",
-                        two: "Dini hari/subuh dan lo aja masih ada ide? 😮‍💨",
-                        three: "Semoga ga ditekan deadline 🥲"
+                        one: "Aku mau tidur, eh tunggu tidak jadi. 😴",
+                        two: "Sudah selarut ini dan kamu punya ide? 😮‍💨",
+                        three: "Semoga kamu tidak menunda-nunda! 🥲"
                     },
                 }
             },
@@ -668,39 +738,39 @@ export const locales : any = {
                 newDesign: "Desain Baru",
                 openDesign: "Buka Desain",
                 menu: "Menu",
-                standaloneTip: "TIP: Ingin mencari dimana untuk menyimpan file .ccad? Pergi ke Bagikan/Ekspor > Ekspor sebagai .ccad",
+                standaloneTip: "TIPS: Apakah Anda mencari cara untuk menyimpan file .ccad? Buka Bagikan/Ekspor > Ekspor sebagai .ccad",
                 loading: {
                     heading: "Memuat CompassCAD...",
-                    subHeading: "Bentar lagi, nanti disiapin kok.",
+                    subHeading: "Tunggu sebentar, kamu akan siap dalam sekejap.",
                 },
-                betaWarning: "Hei! Cuma mau kasih tau kalau editor ini masih beta, jadi harap maklum kalau ada tombol yang rusak atau UI yang ga berfungsi",
+                betaWarning: "Hei! Sekadar informasi bahwa editor ini masih dalam versi beta, jadi harap maklum jika ada tombol yang rusak dan UI yang tidak berfungsi",
                 header: {
-                    goBackHome: "Kembali",
+                    goBackHome: "Kembali ke beranda",
                     undo: "Urungkan",
                     redo: "Ulangi",
-                    share: "Bagi/Ekspor",
+                    share: "Bagikan/Ekspor",
                     feedback: "Kirim Umpan Balik",
                     record: "Rekam Video",
                     recordPopup: {
-                        startRecording: "Mulai merekam",
-                        stopRecording: "Hentikan rekaman",
-                        micOff: "Hidupkan mikrofon",
+                        startRecording: "Mulai Merekam",
+                        stopRecording: "Berhenti Merekam",
+                        micOff: "Nyalakan mikrofon",
                         micOn: "Matikan mikrofon"
                     },
                     shareModal: {
-                        heading: "Bagi/Ekspor Desain",
-                        copyLink: "Salin link",
+                        heading: "Bagikan/Ekspor Desain",
+                        copyLink: "Salin Tautan",
                         exportAsSvg: "Ekspor sebagai SVG",
                         exportAsCcad: "Ekspor sebagai CCAD",
-                        embedToSite: "Cantumkan di situs",
+                        embedToSite: "Sematkan ke situs web",
                         preview: "Pratinjau",
-                        previewDifferent: "Pratinjau bisa menampil lebih lebar",
+                        previewDifferent: "Pratinjau mungkin tampak lebih meregang dari biasanya",
                         settings: "Pengaturan",
                         padding: "Padding",
                         monochrome: "Monokrom",
                         font: "Font",
                         export: "Ekspor",
-                        nothingOnPreview: "Kamu tidak memiliki apa-apa dalam pratinjau!"
+                        nothingOnPreview: "Kamu tidak punya apa-apa untuk dipratinjau saat ini!"
                     }
                 },
                 essential: {
@@ -708,22 +778,22 @@ export const locales : any = {
                     navigate: "Navigasi",
                     move: "Pindah",
                     delete: "Hapus",
-                    addPoint: "Tambahkan Poin",
-                    addLine: "Tambahkan Garis",
-                    addRectangle: "Tambahkan Persegi",
-                    addCircle: "Tambahkan Lingkaran",
-                    addArc: "Tambahkan Busur",
-                    addMeasure: "Ukur",
-                    addLabel: "Tambahkan Label",
-                    addImage: "Tambahkan Gambar",
-                    addPolygon: "Tambahkan Poligon",
-                    addBoundbox: "Tambahkan kotak batas",
+                    addPoint: "Tambah Titik",
+                    addLine: "Tambah Garis",
+                    addRectangle: "Tambah Persegi",
+                    addCircle: "Tambah Lingkaran",
+                    addArc: "Tambah Busur",
+                    addMeasure: "Tambah Ukuran",
+                    addLabel: "Tambah Label",
+                    addImage: "Tambah Gambar",
+                    addPolygon: "Tambah Poligon",
+                    addBoundbox: "Tambah Boundbox",
                 },
                 inspector: {
-                    header: "Inspektor",
-                    collapseToRight: "Tutup ke kanan",
-                    expand: "Buka",
-                    nothing: "Pilih komponen, lalu detail komponen kamu akan ditampil disini.",
+                    header: "Inspektur",
+                    collapseToRight: "Ciutkan ke kanan",
+                    expand: "Perluas",
+                    nothing: "Pilih komponen maka detail komponenmu akan muncul di sini.",
                     properties: "Properti",
                     hierarchy: "Hierarki",
                     searchInHiearchy: "Cari di Hierarki",
@@ -735,7 +805,7 @@ export const locales : any = {
                         name: "Nama",
                         position: "Posisi",
                         size: "Ukuran",
-                        coverage: "Koverasi Busur",
+                        coverage: "Cakupan Busur",
                     },
                     text: {
                         heading: "Properti Teks",
@@ -763,90 +833,101 @@ export const locales : any = {
             no: "いいえ"
         },
         home: {
-            header: "複雑なツールの学習に時間を費やすのはもう終わり。あなたの「夢」を形にするデザインを、もっとシンプルに。",
-            descHero: "もしCADが、NotionやFigmaのように直感的なツールになったら？私たちは建築デザインにおける「パワーツール」の定義を再定義します。",
-            downloadButton: "プラットフォーム版をダウンロード",
-            inBrowserEditor: "ブラウザで起動",
-            header1Sub: "圧倒的に高速なCADソフトウェア。無料でシンプル、そしてミニマリストな設計。",
-            paragraph1Sub: "高価なPCやソフトウェアに手が届かなかった開発者たちが、情熱を込めて作り上げました。誰もが楽しめる設計環境をあなたに。",
-            littleNote1: "*WindowsおよびLinuxのみ対応。",
-            header2Sub: "デスクトップ版が動かない？ウェブ版ならいつでもどこでも利用可能です！",
-            littleNote2: "*画像は実際のソフトウェアとは異なる場合があります。",
-            header3Sub: "インドネシア発。CompassCADは100%インドネシア国内で開発されています！",
-            paragraph3Sub: "利用するだけで、開発者だけでなく、インドネシアのものづくり（Bangga Buatan Indonesia）を直接支援することに繋がります。",
-            littleNote3: "*CompassCADの画像は最終製品を代表するものではありません。「Bangga Buatan Indonesia」はインドネシア観光・創造経済省（Kemenparekraf）の登録商標です。"
+            header: "複雑なツールの習得に時間を費やすことなく、理想を形にしましょう。設計のあり方をシンプルにする時が来ました。",
+            descHero: "もしCADがNotionやFigmaのように直感的なツールだったらどうでしょう？私たちは建築設計における「パワーツール」の定義を再定義します。",
+            downloadButton: "プラットフォーム向けにダウンロード",
+            inBrowserEditor: "ブラウザ版エディタを開く",
+            classicEdior: "クラシックエディタを開く",
+            editorSel: {
+                polished: {
+                    name: "整理されたエディタ",
+                    description: "整理、共有、反復、または最新状態の維持に最適です"
+                },
+                classic: {
+                    name: "スタンドアロンエディタ",
+                    description: "古き良きクラシックなウェブエディタ！ChromebookやCompassCAD PWA向け"
+                }
+            },
+            header1Sub: "驚異的な速さを誇るCADソフトウェア。無料でシンプル、かつミニマルです。",
+            paragraph1Sub: "高価なコンピュータやソフトウェアを買えない開発者が、情熱を込めて作り上げました。ぜひお楽しみください。",
+            littleNote1: "*WindowsおよびLinuxでのみ利用可能です。",
+            header2Sub: "デスクトップ版がない、または動作しませんか？ウェブ版がいつでも利用可能です！",
+            littleNote2: "*画像は実際のソフトウェアとは異なる場合があります",
+            header3Sub: "インドネシアはお好きですか？CompassCADは100%インドネシア製です！",
+            paragraph3Sub: "開発者を直接支援するだけでなく、気づかないうちにインドネシアもサポートしています！",
+            littleNote3: "*CompassCADの画像は最終製品を代表するものではありません。「Bangga Buatan Indonesia」はインドネシア共和国観光クリエイティブ経済省（Kemenparekraf）の商標です。"
         },
         editor: {
             home: {
                 quickActions: "クイックアクション",
                 createNew: "新規作成",
-                importExisting: "既存ファイルのインポート",
-                clearEntireHistory: "履歴をすべて削除",
-                askBlueprint: "Blueprintに相談",
-                recents: "最近のプロジェクト",
+                importExisting: "既存のファイルをインポート",
+                clearEntireHistory: "すべての履歴を消去",
+                askBlueprint: "Blueprintに質問",
+                recents: "最近の項目",
                 blueprintIntro: "こんにちは！私はBlueprintです！",
-                blueprintDesc: "プロンプトからデザインを作成するお手伝いをします。何でも聞いてください！",
-                blueprintSuggestions: "または、こちらを試してみますか？",
+                blueprintDesc: "プロンプトに基づいてデザインの作成をお手伝いします。何でも聞いてください！",
+                blueprintSuggestions: "または、以下の提案を試してみてください：",
                 bpGenerated: "Blueprint生成デザイン",
                 suggestions: {
                     one: {
                         shorthand: "🏠 2階建ての家",
-                        prompt: "2階建ての家を作成して"
+                        prompt: "2階建ての家を作成してください"
                     },
                     two: {
                         shorthand: "🚗 シンプルな車のデザイン",
-                        prompt: "車体やホイールを含めた、シンプルな車のデザインを作成して"
+                        prompt: "車のシャシーやホイールを含む、シンプルな車のデザインを作成してください"
                     },
                     three: {
                         shorthand: "🏢 ビルのフロアプラン",
-                        prompt: "家具や部屋のレイアウトを含めた、ビルのフロアプランを作成して"
+                        prompt: "部屋や家具を含む、ビルのフロアプランを作成してください"
                     },
                     four: {
                         shorthand: "🛠️ ワークショップのレイアウト",
-                        prompt: "作業台や道具の配置を含めた、ワークショップのレイアウト図面を作成して"
+                        prompt: "作業台や道具を含む、ワークショップのレイアウトプランを作成してください"
                     },
                     five: {
-                        shorthand: "🏰 堀のあるお城",
-                        prompt: "塔や城壁、堀を備えたお城のデザインを作成して"
+                        shorthand: "🏰 堀のある城",
+                        prompt: "塔や壁、堀のある城を作成してください"
                     }
                 },
-                blueprintPlaceholder: "Blueprint AIに質問、または作成依頼",
-                blueprintWarning: "AIが生成する内容は誤りや不正確な場合があります。Google AIのGeminiを搭載しています。",
-                clearHistoryModal: "履歴の削除",
-                text1Sure: "本当に履歴をすべて削除しますか？",
+                blueprintPlaceholder: "Blueprint AIに質問または作成依頼",
+                blueprintWarning: "AI生成コンテンツは誤りや不正確な場合があります。Google AIのGeminiを使用しています",
+                clearHistoryModal: "履歴を消去",
+                text1Sure: "本当にすべての履歴を消去しますか？",
                 boldTextWarning: "この操作は取り消せません。",
-                viewInEditor: "このデザインをエディタで表示/編集",
-                nothingInHistory: "現在、履歴はありません。図面を作成するとここに表示されます。",
+                viewInEditor: "エディタでこのデザインを表示/編集",
+                nothingInHistory: "今日の履歴はありません。図面を作成すると、ここに履歴が表示されます。",
                 randomMesg: {
                     morning: {
-                        one: "お疲れ様です。コーヒーは飲みましたか？ ☕",
+                        one: "やあ！コーヒーは飲みましたか？ ☕",
                         two: "おはようございます！一日の準備はいいですか？ 🌄",
-                        three: "おはよう！今日はどんなアイデアが浮かぶか楽しみです！ 🤩"
+                        three: "おはよう！どんなアイデアが浮かぶか楽しみです！ 🤩"
                     },
                     noon: {
-                        one: "この時間から何か始めますか？ 🧐",
-                        two: "ランチタイム！しっかり食べて、作業も捗らせましょう！ 😋",
-                        three: "居眠りしていませんよね？ 😴"
+                        one: "この時間に何か始めますか？ 🧐",
+                        two: "ランチタイムです！何か食べてから作業しましょう！ 😋",
+                        three: "寝てしまわないよう願っています！ 😴"
                     },
                     afternoon: {
-                        one: "まだ頑張っていますね？さあ、デザインしましょう！ 🗺️",
-                        two: "クリエイティビティを止めないで！ ✏️",
-                        three: "CAD作業にぴったりの時間です！ 📐"
+                        one: "まだ起きていますか？デザインしましょう！ 🗺️",
+                        two: "創造性を維持しましょう！ ✏️",
+                        three: "CAD作業に最適な時間です！ 📐"
                     },
                     evening: {
-                        one: "夜まで作業ですか？お疲れ様です。 🧐",
-                        two: "やり残したことはありませんか？ ⌚",
+                        one: "夜まで作業しているのですか？ 🧐",
+                        two: "直前の変更はありますか？ ⌚",
                         three: "まだまだ元気ですね。その調子です 💪"
                     },
                     night: {
-                        one: "そろそろ寝る時間ではありませんか？ 🛌",
-                        two: "こんな時間にアイデアが降ってきましたか？ 😵‍💫",
-                        three: "カフェインがまだ効いているようですね。 ☕"
+                        one: "もう寝る時間ではありませんか？ 🛌",
+                        two: "こんな時間にアイデアが？ 😵‍💫",
+                        three: "カフェインが切れることはなさそうですね。 ☕"
                     },
                     dawn: {
-                        one: "寝ようと思ったけど……やっぱり起きてます。 😴",
-                        two: "こんな深夜に名案が？ 😮‍💨",
-                        three: "後回しにしていたわけじゃないですよね……？ 🥲"
+                        one: "寝ようかな…やっぱりやめました。 😴",
+                        two: "こんなに遅くにアイデアが湧きましたか？ 😮‍💨",
+                        three: "先延ばしにしていませんよね？ 🥲"
                     }
                 }
             },
@@ -854,19 +935,19 @@ export const locales : any = {
                 newDesign: "新規デザイン",
                 openDesign: "デザインを開く",
                 menu: "メニュー",
-                standaloneTip: "ヒント: .ccadファイルの保存方法をお探しですか？「共有/書き出し」>「.ccadとして書き出し」から行えます。",
+                standaloneTip: "ヒント: .ccadファイルの保存方法をお探しですか？共有/エクスポート > .ccadとしてエクスポート に進んでください",
                 loading: {
                     heading: "CompassCADを読み込み中...",
-                    subHeading: "準備ができるまで、少々お待ちください。"
+                    subHeading: "すぐ準備が整います。少々お待ちください。",
                 },
-                betaWarning: "このエディタは現在ベータ版です。ボタンが動作しなかったり、UIに不具合がある場合があります。",
+                betaWarning: "お知らせ：このエディタはまだベータ版です。ボタンやUIが正常に動作しない場合があります。",
                 header: {
                     goBackHome: "ホームに戻る",
                     undo: "元に戻す",
                     redo: "やり直し",
-                    share: "共有/書き出し",
+                    share: "共有/エクスポート",
                     feedback: "フィードバックを送信",
-                    record: "動画を録画",
+                    record: "ビデオを録画",
                     recordPopup: {
                         startRecording: "録画開始",
                         stopRecording: "録画停止",
@@ -874,19 +955,19 @@ export const locales : any = {
                         micOn: "マイクをオフにする"
                     },
                     shareModal: {
-                        heading: "デザインの共有/書き出し",
+                        heading: "デザインの共有/エクスポート",
                         copyLink: "リンクをコピー",
-                        exportAsSvg: "SVGとして書き出し",
-                        exportAsCcad: "CCADとして書き出し",
-                        embedToSite: "サイトに埋め込み",
+                        exportAsSvg: "SVGとしてエクスポート",
+                        exportAsCcad: "CCADとしてエクスポート",
+                        embedToSite: "ウェブサイトに埋め込み",
                         preview: "プレビュー",
                         previewDifferent: "プレビューは通常より引き伸ばされて見える場合があります",
                         settings: "設定",
-                        padding: "余白",
+                        padding: "余白 (Padding)",
                         monochrome: "モノクロ",
                         font: "フォント",
-                        export: "書き出し",
-                        nothingOnPreview: "プレビューするものがありません！"
+                        export: "エクスポート",
+                        nothingOnPreview: "現在、プレビューするものがありません！"
                     }
                 },
                 essential: {
@@ -899,17 +980,17 @@ export const locales : any = {
                     addRectangle: "長方形を追加",
                     addCircle: "円を追加",
                     addArc: "円弧を追加",
-                    addMeasure: "計測を追加",
+                    addMeasure: "寸法を追加",
                     addLabel: "ラベルを追加",
                     addImage: "画像を追加",
                     addPolygon: "多角形を追加",
-                    addBoundbox: "バウンディングボックスを追加"
+                    addBoundbox: "バウンディングボックスを追加",
                 },
                 inspector: {
-                    header: "インスペクター",
-                    collapseToRight: "右にたたむ",
+                    header: "インスペクタ",
+                    collapseToRight: "右側に折りたたむ",
                     expand: "展開",
-                    nothing: "コンポーネントを選択すると、詳細がここに表示されます。",
+                    nothing: "コンポーネントを選択すると、ここに詳細が表示されます。",
                     properties: "プロパティ",
                     hierarchy: "階層",
                     searchInHiearchy: "階層内を検索",
@@ -921,22 +1002,22 @@ export const locales : any = {
                         name: "名前",
                         position: "位置",
                         size: "サイズ",
-                        coverage: "弧の範囲"
+                        coverage: "円弧の範囲",
                     },
                     text: {
                         heading: "テキストプロパティ",
                         text: "テキスト",
-                        fontSize: "フォントサイズ"
+                        fontSize: "フォントサイズ",
                     },
                     picture: {
                         heading: "画像プロパティ",
-                        src: "ソース"
+                        src: "ソース",
                     },
                     polygon: {
                         heading: "多角形プロパティ",
                         fillColor: "塗りつぶしの色",
                         strokeColor: "線の色",
-                        enableStroke: "線を有効にする"
+                        enableStroke: "線を有効にする",
                     }
                 }
             }
@@ -949,183 +1030,194 @@ export const locales : any = {
             no: "Nej"
         },
         home: {
-            header: "Bygg dina drömmar utan att slösa tid på att lära dig komplexa verktyg. Det är dags att förenkla din \"drömbyggande\" design",
-            descHero: "Tänk om CAD var lika enkelt som de verktyg vi använder idag, som Notion eller till och med Figma. Förutom att vi kan omdefiniera vad \"kraftfulla verktyg\" betyder för arkitekturdesign",
+            header: "Bygg dina drömmar utan att slösa tid på komplexa verktyg. Det är dags att förenkla din designprocess.",
+            descHero: "Tänk om CAD var lika enkelt som de verktyg vi använder idag, som Notion eller Figma. Vi omdefinierar vad \"kraftfulla verktyg\" innebär för arkitektonisk design.",
             downloadButton: "Ladda ner för plattform",
-            inBrowserEditor: "Redigerare i webbläsaren",
-            header1Sub: "Blixtsnabbt CAD-program. Gratis, men ändå enkelt och minimalistiskt",
-            paragraph1Sub: "Byggd från hjärtat av fattiga utvecklare som inte har råd med en bra dator och ett CAD-program, skapat för att du ska kunna njuta av det.",
+            inBrowserEditor: "Öppna webbläsar-editor",
+            classicEdior: "Öppna klassisk editor",
+            editorSel: {
+                polished: {
+                    name: "Organiserad Editor",
+                    description: "Perfekt för att organisera, dela, iterera eller bara hålla ordning."
+                },
+                classic: {
+                    name: "Fristående Editor",
+                    description: "Den gamla goda klassiska webbeditorn! För Chromebooks eller CompassCAD PWA."
+                }
+            },
+            header1Sub: "Blixtsnabb CAD-programvara. Helt gratis, enkel och minimalistisk.",
+            paragraph1Sub: "Byggd med kärlek av utvecklare som vill att alla ska ha råd med bra designverktyg.",
             littleNote1: "*Endast tillgängligt för Windows och Linux.",
             header2Sub: "Ingen skrivbordsversion eller fungerar det inte? Vi har alltid webbversionen!",
-            littleNote2: "*Bilder kan se annorlunda ut än den faktiska programvaran",
-            header3Sub: "Älskar du Indonesien? CompassCAD är 100 % tillverkat i Indonesien!",
-            paragraph3Sub: "Du stöder inte bara utvecklarna direkt, du stöder även Indonesien, utan att inse det!",
-            littleNote3: "*Bilder från CompassCAD representerar inte slutprodukten. Bangga Buatan Indonesia är ett varumärke som tillhör Republiken Indonesiens ministerium för turism och kreativ ekonomi (Kemenparekraf)"
+            littleNote2: "*Bilder kan skilja sig från den faktiska programvaran.",
+            header3Sub: "Älskar du Indonesien? CompassCAD är till 100% skapat i Indonesien!",
+            paragraph3Sub: "Du stöder inte bara utvecklarna, du stöder också Indonesien utan att ens inse det!",
+            littleNote3: "*Bilder av CompassCAD representerar inte slutprodukten. Bangga Buatan Indonesia är ett varumärke som tillhör ministeriet för turism och kreativ ekonomi i Republiken Indonesien (Kemenparekraf)."
         },
         editor: {
             home: {
-                quickActions: "Snabba åtgärder",
+                quickActions: "Snabbåtgärder",
                 createNew: "Skapa ny",
                 importExisting: "Importera befintlig",
                 clearEntireHistory: "Rensa hela historiken",
                 askBlueprint: "Fråga Blueprint",
                 recents: "Senaste",
                 blueprintIntro: "Hej där! Jag är Blueprint!",
-                blueprintDesc: "Jag kan hjälpa dig att skapa designer baserat på dina frågor. Fråga mig bara vad som helst!",
+                blueprintDesc: "Jag kan hjälpa dig att skapa design baserat på dina instruktioner. Fråga mig vad som helst!",
                 blueprintSuggestions: "Eller prova dessa förslag:",
-                bpGenerated: "Blueprint-genererad design",
+                bpGenerated: "Design genererad av Blueprint",
                 suggestions: {
                     one: {
                         shorthand: "🏠 Ett hus med 2 våningar",
-                        prompt: "Skapa ett hus med 2 våningar"
+                        prompt: "Skapa ett hus med 2 våningar åt mig"
                     },
                     two: {
                         shorthand: "🚗 En enkel bildesign",
-                        prompt: "Skapa en enkel bildesign, inklusive allt som bilchassi och hjul"
+                        prompt: "Skapa en enkel bildesign åt mig, inklusive allt som chassi och hjul"
                     },
                     three: {
                         shorthand: "🏢 En planlösning för en byggnad",
-                        prompt: "Skapa en planlösning för en byggnad, inklusive rum och möbler"
+                        prompt: "Skapa en planlösning för en byggnad åt mig, inklusive rum och möbler"
                     },
                     four: {
-                        shorthand: "🛠️ En planlösning för en verkstad",
-                        prompt: "Skapa en planlösning för en verkstad, inklusive arbetsbänkar och verktyg"
+                        shorthand: "🛠️ En layout för en verkstad",
+                        prompt: "Skapa en layout för en verkstad åt mig, inklusive arbetsbänkar och verktyg"
                     },
                     five: {
                         shorthand: "🏰 Ett slott med vallgrav",
-                        prompt: "Skapa ett slott med vallgrav, inklusive torn och väggar"
+                        prompt: "Skapa ett slott med vallgrav åt mig, inklusive torn och murar"
                     }
                 },
                 blueprintPlaceholder: "Fråga eller skapa med Blueprint AI",
-                blueprintWarning: "AI-genererat innehåll kan vara felaktigt eller oprecist. Drivs av Google AI:s Gemini",
+                blueprintWarning: "AI-genererat innehåll kan vara felaktigt. Drivs av Google AI:s Gemini",
                 clearHistoryModal: "Rensa historik",
-                text1Sure: "Är du säker på att du vill rensa hela historiken? ",
+                text1Sure: "Är du säker på att du vill rensa hela historiken?",
                 boldTextWarning: "Denna åtgärd kan inte ångras.",
-                viewInEditor: "Visa/redigera denna design i redigeraren",
-                nothingInHistory: "Du har inget i din historiklista idag. Gör några ritningar så visas din historik här.",
+                viewInEditor: "Visa/redigera denna design i editorn",
+                nothingInHistory: "Du har inget i din historiklista idag. Skapa några ritningar så visas din historik här.",
                 randomMesg: {
                     morning: {
-                        one: "Hallå där? Har du tagit en kopp kaffe? ☕",
+                        one: "Hej! Har du druckit kaffe än? ☕",
                         two: "God morgon! Redo att börja dagen? 🌄",
-                        three: "Morgon! Låt oss se vad du hittar på! 🤩"
+                        three: "God morgon! Låt oss se vad du brainstormar fram! 🤩"
                     },
                     noon: {
-                        one: "Börjar du något vid den här tiden? 🧐",
-                        two: "Lunchdags! Sugen på något och jobba här! 😋",
-                        three: "Jag hoppas du inte sover! 😴"
+                        one: "Börja med något nu? 🧐",
+                        two: "Lunchtid! Sugen på något gott medan du jobbar? 😋",
+                        three: "Jag hoppas att du inte sover! 😴"
                     },
                     afternoon: {
-                        one: "Är du fortfarande uppe? Låt oss designa! 🗺️",
-                        two: "Låt kreativiteten flöda! ✏️",
+                        one: "Är du fortfarande vaken? Låt oss designa! 🗺️",
+                        two: "Håll kreativiteten flödande! ✏️",
                         three: "Perfekt tid för CAD-arbete! 📐"
                     },
                     evening: {
-                        one: "Jobbar du fortfarande på kvällarna? 🧐",
-                        two: "Har du något i sista minuten? ⌚",
-                        three: "Ändå är du fortfarande stark. Fortsätt så 💪"
+                        one: "Jobbar du fortfarande på kvällen? 🧐",
+                        two: "Något i sista minuten? ⌚",
+                        three: "Du är fortfarande stark. Fortsätt så 💪"
                     },
                     night: {
-                        one: "Ska du inte sova? 🛌",
-                        two: "Brainstormade du av misstag nu? 😵‍💫",
-                        three: "Ändå tar ditt koffein aldrig slut. ☕"
+                        one: "Borde du inte sova nu? 🛌",
+                        two: "Brainstorming mitt i natten? 😵‍💫",
+                        three: "Ditt koffein tar aldrig slut. ☕"
                     },
                     dawn: {
-                        one: "Jag ska sova, vänta, strunt samma. 😴",
-                        two: "Så sent och har du några idéer? 😮‍💨",
-                        three: "Hoppas du inte skjuter upp saker! 🥲"
+                        one: "Jag ska gå och lägga mig... vänta, glöm det. 😴",
+                        two: "Så här sent och du har fortfarande idéer? 😮‍💨",
+                        three: "Jag hoppas att du inte prokrastinerar! 🥲"
                     }
                 }
             },
             main: {
+                newDesign: "Ny design",
+                openDesign: "Öppna design",
+                menu: "Meny",
+                standaloneTip: "TIPS: Letar du efter ett sätt att spara .ccad-filer? Gå till Dela/Exportera > Exportera som .ccad",
                 loading: {
                     heading: "Laddar CompassCAD...",
-                    subHeading: "Vänta bara, du är klar om en sekund."
+                    subHeading: "Vänta lite, du är snart redo.",
                 },
-                betaWarning: "Hej! Bara ett tips om att den här redigeraren fortfarande är i beta, så förvänta dig trasiga knappar och ett icke-fungerande användargränssnitt.",
-                newDesign: "Ny Design",
-                openDesign: "Öppna Design",
-                menu: "Meny",
-                standaloneTip: "TIPP: Du letar efter en metod att spara .ccad-filer? Gå till Dela/Exportera > Exportera som .ccad",
+                betaWarning: "Hej! Tänk på att denna editor fortfarande är i beta, så förvänta dig trasiga knappar och ofullständigt gränssnitt.",
                 header: {
                     goBackHome: "Gå tillbaka hem",
                     undo: "Ångra",
-                    redo: "Upprepa",
+                    redo: "Gör om",
                     share: "Dela/Exportera",
-                    feedback: "Skicka Feedback",
-                    record: "Spela in Video",
+                    feedback: "Skicka feedback",
+                    record: "Spela in video",
                     recordPopup: {
-                        startRecording: "Starta Inspelningen",
-                        stopRecording: "Stoppa Inspelningen",
-                        micOff: "Slå på mikrofonen",
-                        micOn: "Slå av mikrofonen"
+                        startRecording: "Starta inspelning",
+                        stopRecording: "Stoppa inspelning",
+                        micOff: "Slå på mikrofon",
+                        micOn: "Stäng av mikrofon"
                     },
                     shareModal: {
-                        heading: "Dela/Exportera Design",
-                        copyLink: "Kopiera Link",
+                        heading: "Dela/Exportera design",
+                        copyLink: "Kopiera länk",
                         exportAsSvg: "Exportera som SVG",
                         exportAsCcad: "Exportera som CCAD",
-                        embedToSite: "Bädda på webbplats",
-                        preview: "Förhands",
-                        previewDifferent: "Förhandsgranskningen kan se utdragen ut än vanligt",
+                        embedToSite: "Bädda in på webbplats",
+                        preview: "Förhandsgranskning",
+                        previewDifferent: "Förhandsgranskningen kan se mer utdragen ut än vanligt",
                         settings: "Inställningar",
-                        padding: "Stoppning",
-                        monochrome: "Svartvit",
-                        font: "Font",
+                        padding: "Marginal (Padding)",
+                        monochrome: "Monokrom",
+                        font: "Typsnitt",
                         export: "Exportera",
-                        nothingOnPreview: "Du har inget i förhandsgranskningen just nu!"
+                        nothingOnPreview: "Du har ingenting i förhandsgranskningen just nu!"
                     }
                 },
                 essential: {
-                    select: "Välja",
+                    select: "Välj",
                     navigate: "Navigera",
                     move: "Flytta",
-                    delete: "Raderra",
-                    addPoint: "Lägg till Punkt",
-                    addLine: "Lägg till Linje",
-                    addRectangle: "Lägg till Rektangel",
-                    addBoundbox: "Lägg till avgränsningsruta",
-                    addCircle: "Lägg till Cirkel",
-                    addArc: "Lägg till Båge",
-                    addMeasure: "Mät",
-                    addLabel: "Lägg till Text",
-                    addImage: "Lägg till Bild",
-                    addPolygon: "Lägg till Polygon",
+                    delete: "Radera",
+                    addPoint: "Lägg till punkt",
+                    addLine: "Lägg till linje",
+                    addRectangle: "Lägg till rektangel",
+                    addCircle: "Lägg till cirkel",
+                    addArc: "Lägg till båge",
+                    addMeasure: "Lägg till mått",
+                    addLabel: "Lägg till etikett",
+                    addImage: "Lägg till bild",
+                    addPolygon: "Lägg till polygon",
+                    addBoundbox: "Lägg till begränsningsruta",
                 },
                 inspector: {
                     header: "Inspektör",
-                    collapseToRight: "Kollapsa åt höger",
+                    collapseToRight: "Fäll ihop till höger",
                     expand: "Expandera",
-                    nothing: "Välj en komponent så ska dina komponentdetaljer visas här.",
+                    nothing: "Välj en komponent för att se detaljer här.",
                     properties: "Egenskaper",
                     hierarchy: "Hierarki",
-                    searchInHiearchy: "Sök i Hierarki",
+                    searchInHiearchy: "Sök i hierarkin",
                     general: {
                         active: "Aktiv",
-                        radius: "Radius",
+                        radius: "Radie",
                         color: "Färg",
                         opacity: "Opacitet",
                         name: "Namn",
                         position: "Position",
                         size: "Storlek",
-                        coverage: "Båge Täckning",
+                        coverage: "Bågtäckning",
                     },
                     text: {
-                        heading: "Text Egenskaper",
+                        heading: "Textegenskaper",
                         text: "Text",
-                        fontSize: "Fontstorlek",
+                        fontSize: "Teckenstorlek",
                     },
                     picture: {
-                        heading: "Bild Egenskaper",
+                        heading: "Bildegenskaper",
                         src: "Källa",
                     },
                     polygon: {
-                        heading: "Polygon Egenskaper",
-                        fillColor: "Fyllningsfärg",
-                        strokeColor: "Streckfärg",
-                        enableStroke: "Aktivera Streck",
+                        heading: "Polygonegenskaper",
+                        fillColor: "Fyllnadsfärg",
+                        strokeColor: "Linjefärg",
+                        enableStroke: "Aktivera linje",
                     }
                 }
             }
         }
     }
-}
+};

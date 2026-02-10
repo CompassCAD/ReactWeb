@@ -77,7 +77,7 @@ const Home = () => {
                                 <HomeButton style={{borderTopRightRadius: '5px', borderBottomRightRadius: '5px', paddingBottom: '15px'}}>
                                     <img src={TryIt} alt='Tryit Icon' width={24}/>
                                     &nbsp;
-                                    {editorState == EditorMode.Polished ? getLocaleKey('home.inBrowserEditor') : 'Open Classic Editor'}
+                                    {editorState == EditorMode.Polished ? getLocaleKey('home.inBrowserEditor') : getLocaleKey('home.classicEdior')}
                                 </HomeButton>
                             </Link>
                             <HomeButton 
@@ -91,15 +91,15 @@ const Home = () => {
                                     <div className={styles['editor-mode-option'] + (editorState == EditorMode.Polished ? ' ' + styles['active'] : '')} onClick={() => setEditorStateThing(EditorMode.Polished)}>
                                         <img src={TryIt} alt='Tryit Icon' width={24}/>
                                         <div className={styles['editor-mode-description']}>
-                                            <b>Organized Editor</b>
-                                            <span>Great for organizing, sharing, iterating, or just keeping up</span>
+                                            <b>{getLocaleKey('home.editorSel.polished.name')}</b>
+                                            <span>{getLocaleKey('home.editorSel.polished.description')}</span>
                                         </div>
                                     </div>
                                     <div className={styles['editor-mode-option'] + (editorState == EditorMode.Classic ? ' ' + styles['active'] : '')} onClick={() => setEditorStateThing(EditorMode.Classic)}>
                                         <img src={TryIt} alt='Tryit Icon' width={24}/>
                                         <div className={styles['editor-mode-description']}>
-                                            <b>Standalone Editor</b>
-                                            <span>The good ol' classic web editor! For Chromebooks or CompassCAD PWA</span>
+                                            <b>{getLocaleKey('home.editorSel.classic.name')}</b>
+                                            <span>{getLocaleKey('home.editorSel.classic.description')}</span>
                                         </div>
                                     </div>
                                 </div>
