@@ -137,6 +137,7 @@ const StandaloneEditor = () => {
     PolySymbol,
     BoundboxSymbol,
   ];
+  const params = new URLSearchParams(window.location.search);
   const { id } = useParams<{ id: string }>();
   const canvas = useRef<HTMLCanvasElement>(null);
   const renderer = useRef<GraphicsRenderer | null>(null);
@@ -274,6 +275,7 @@ const StandaloneEditor = () => {
       renderer.current.setMode(device === "desktop" ? RendererTypes.NavigationTypes.Select : RendererTypes.NavigationTypes.Navigate);
       setLoading(false);
       toast(getLocaleKey("editor.main.betaWarning"));
+      renderer.current.recordingMode = params.get('rec') == '1' ? true : false;
     }
   }, []);
   useEffect(() => {

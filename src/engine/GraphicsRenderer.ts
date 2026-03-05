@@ -39,6 +39,12 @@ export const _num2hex = (value: number) => {
     return hexString.toUpperCase();
 }
 
+enum MouseClick {
+    Left,
+    Middle,
+    Right
+}
+
 export class GraphicsRenderer {
     modes: GenericDefiner;
     mouseAction: GenericDefiner;
@@ -102,6 +108,7 @@ export class GraphicsRenderer {
     handles: HandleProperties[];
     dragHandle: string | null;
     lastSelectedComponent: number| null;
+    isMouseDown: boolean;
 
     constructor(
         displayRef: HTMLCanvasElement | null,
@@ -194,6 +201,7 @@ export class GraphicsRenderer {
         this.handles = [];
         this.dragHandle = '';
         this.lastSelectedComponent = null;
+        this.isMouseDown = false;
     }
 
     start() {
@@ -726,7 +734,7 @@ export class GraphicsRenderer {
                 break;
         }
     }
-    drawUserCursor(x: number, y: number) {
+    drawUserCursor(x: number, y: number, color?: string) {
         const mouseShapeVectors: VectorType[] = [
             {
                 x: 0,
@@ -757,8 +765,10 @@ export class GraphicsRenderer {
         }
     });
     this.context?.closePath();
-    this.context!.fillStyle = '#0080ff';
-    this.context?.fill();
+    if (color) {
+        this.context!.fillStyle = color;
+        this.context?.fill();
+    }
 
     this.context!.strokeStyle = '#e9e9e9';
     this.context!.lineWidth = 1;
@@ -1491,6 +1501,8 @@ export class GraphicsRenderer {
         }
     }
     performAction(e: MouseEvent, action: number) {
+        if (action === this.mouseAction.Down) this.isMouseDown = true;
+        else if (action === this.mouseAction.Up) this.isMouseDown = false;
         switch (this.mode) {
             case this.modes.AddPoint:
                 this.displayRef!.style.cursor = `url("${CrosshairCursor}") 16 16, crosshair`;
@@ -2171,6 +2183,61 @@ export class GraphicsRenderer {
         var text = this.tooltip;
         return text + ` (${fps} FPS, dx=${Math.floor(this.getCursorXLocal())};dy=${Math.floor(this.getCursorYLocal())})`;
     }
+    renderHUD() {
+        if (this.context) {
+            // Calculate the "Screen Space" position of the cursor once
+            const screenX = (this.getCursorXRaw() + this.camX) * this.zoom;
+            const screenY = (this.getCursorYRaw() + this.camY) * this.zoom;
+
+            this.drawUserCursor(screenX, screenY, this.selectedColor);
+
+            this.context.moveTo(this.displayHeight - 20, 20);
+            this.context.strokeStyle = '#ffffff';
+            this.context.lineWidth = 2;
+            this.context.fillStyle = '#ffffff';
+            this.context.font = `16px 'Radio Canada Big', sans-serif`;
+            this.context.textAlign = 'center';
+            this.context.strokeRect(-(this.displayWidth / 2) + 30, (this.displayHeight / 2) - 100, 60, 40);
+            this.context.fillText('Mouse', -(this.displayWidth / 2) + 60, (this.displayHeight / 2) - 75);
+
+            this.drawUserCursor(-(this.displayWidth / 2) + 30, (this.displayHeight / 2) - 40);
+            this.context.fillStyle = '#ffffff';
+            this.context.textAlign = 'left';
+            this.context.fillText(`X: ${Math.floor(this.getCursorXLocal())}, Y: ${Math.floor(this.getCursorYLocal())}`, -(this.displayWidth / 2) + 50, (this.displayHeight / 2) - 25);
+
+            if (this.isMouseDown) {
+                this.context.save();
+                
+                // Fixed alpha or a different logic if you want it visible at all zooms
+                this.context.globalAlpha = 0.8; 
+                this.context.strokeStyle = this.selectedColor;
+                this.context.lineWidth = 2; // Always 2 pixels thick
+                
+                this.context.beginPath();
+                
+                // Example "Flick" line: 
+                // We start at screen position and offset by absolute pixels
+                this.context.moveTo(screenX - 5, screenY - 5);
+                this.context.lineTo(screenX - 10, screenY - 10);
+
+                this.context.moveTo(screenX + 1, screenY - 5);
+                this.context.lineTo(screenX + 2, screenY - 12);
+
+                this.context.moveTo(screenX - 6, screenY + 1);
+                this.context.lineTo(screenX - 12, screenY + 2);
+                
+                this.context.stroke();
+                this.context.restore();
+
+                this.context.fillStyle = '#ffffff';
+                this.context.fillRect(-(this.displayWidth / 2) + 30, (this.displayHeight / 2) - 100, 60, 40);
+                this.context.fillStyle = '#000000';
+                this.context.font = `16px 'Radio Canada Big', sans-serif`;
+                this.context.textAlign = 'center';
+                this.context.fillText('Mouse', -(this.displayWidth / 2) + 60, (this.displayHeight / 2) - 75);
+            }
+        }
+    }
     update() {
         this.offsetX = this.displayRef!.offsetLeft;
         this.offsetY = this.displayRef!.offsetTop;
@@ -2193,7 +2260,7 @@ export class GraphicsRenderer {
         this.drawRules();
         this.refreshSelectionTools();
         if (this.recordingMode) {
-            this.drawUserCursor((this.getCursorXRaw() + this.camX) * this.zoom, (this.getCursorYRaw() + this.camY) * this.zoom);
+            this.renderHUD();
         }
     }
 }
