@@ -169,10 +169,6 @@ const EditorHome = () => {
     const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
     const sendButton = useRef<HTMLDivElement>(null);
 
-    // I'm fucked of sending the API key to the console, so I'll comment this line
-
-    const genAI = new GoogleGenAI({apiKey: process.env.REACT_APP_BLUEPRINT_API_KEY || ''});
-
     const sendMessage = async () => {
         if (!currentMessage.trim()) return;
         
@@ -244,7 +240,7 @@ However, outside of the ccad block, you can provide comments and explanations, s
 When the user speaks in other languages than English, you must reply to them in that language. For example, a user requests for something in Dutch, you must reply in Dutch, and vice versa
             `;
 
-            const response = await fetch('https://ai.hackclub.com/proxy/v1/responses', {
+            const response = await fetch(process.env.REACT_APP_BLUEPRINT_API_URL_ENDPOINT || 'https://ai.hackclub.com/proxy/v1/responses', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${process.env.REACT_APP_BLUEPRINT_API_KEY || ''}`,
@@ -410,9 +406,11 @@ When the user speaks in other languages than English, you must reply to them in 
                         </YesNoDialog>
                     )}
                     <div className={homeStyles['editor-home-header']}>
-                        <div className={homeStyles['header-beta']}>
-                            <span>Blueprint AI is temporarily down! We're sorry about that!</span>
-                        </div>
+                        {process.env.REACT_APP_BLUEPRINT_ENABLED === 'false' && (
+                            <div className={homeStyles['header-beta']}>
+                                <span>Blueprint AI is temporarily down! We're sorry about that!</span>
+                            </div>
+                        )}
                         <img src={CompassCADLogo} alt='CompassCAD Logo' height={24} />
                     </div>
                     <br></br>
@@ -453,12 +451,14 @@ When the user speaks in other languages than English, you must reply to them in 
                             >
                                 {getLocaleKey('editor.home.clearEntireHistory')}
                             </MiniButtonClickable>
-                            {/* <MiniButtonClickable 
-                                icon={BluePrintSymbol}
-                                onPress={() => {setIsBluePrintMode(isBluePrintMode ? false : true)}}
-                            >
-                                {getLocaleKey('editor.home.askBlueprint')}
-                            </MiniButtonClickable> */}
+                            {process.env.REACT_APP_BLUEPRINT_ENABLED === 'true' && (
+                                <MiniButtonClickable 
+                                    icon={BluePrintSymbol}
+                                    onPress={() => {setIsBluePrintMode(isBluePrintMode ? false : true)}}
+                                >
+                                    {getLocaleKey('editor.home.askBlueprint')}
+                                </MiniButtonClickable>
+                            )}
                         </div>
                         <br></br>
                         {isBluePrintMode && (
@@ -631,12 +631,14 @@ When the user speaks in other languages than English, you must reply to them in 
                             >
                                 {getLocaleKey('editor.home.clearEntireHistory')}
                             </MiniButtonClickable>
-                            <MiniButtonClickable 
-                                icon={BluePrintSymbol}
-                                onPress={() => {setIsBluePrintMode(isBluePrintMode ? false : true); setShowMobileMenu(false);}}
-                            >
-                                {getLocaleKey('editor.home.askBlueprint')}
-                            </MiniButtonClickable>
+                            {process.env.REACT_APP_BLUEPRINT_ENABLED === 'true' && (
+                                <MiniButtonClickable 
+                                    icon={BluePrintSymbol}
+                                    onPress={() => {setIsBluePrintMode(isBluePrintMode ? false : true); setShowMobileMenu(false);}}
+                                >
+                                    {getLocaleKey('editor.home.askBlueprint')}
+                                </MiniButtonClickable>
+                            )}
                         </div>
                     )}
                     {(isBluePrintMode && device === 'mobile') && (
