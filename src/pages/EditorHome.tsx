@@ -247,7 +247,7 @@ When the user speaks in other languages than English, you must reply to them in 
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    model: 'qwen/qwen3-32b',
+                    model: process.env.REACT_APP_BLUEPRINT_MODEL || 'qwen/qwen3-32b',
                     input: [
                         // System instructions as the first user message per HC format
                         {
@@ -406,7 +406,7 @@ When the user speaks in other languages than English, you must reply to them in 
                         </YesNoDialog>
                     )}
                     <div className={homeStyles['editor-home-header']}>
-                        {process.env.REACT_APP_BLUEPRINT_ENABLED === 'false' && (
+                        {(process.env.REACT_APP_BLUEPRINT_ENABLED || 'false') === 'false' && (
                             <div className={homeStyles['header-beta']}>
                                 <span>Blueprint AI is temporarily down! We're sorry about that!</span>
                             </div>
@@ -451,7 +451,7 @@ When the user speaks in other languages than English, you must reply to them in 
                             >
                                 {getLocaleKey('editor.home.clearEntireHistory')}
                             </MiniButtonClickable>
-                            {process.env.REACT_APP_BLUEPRINT_ENABLED === 'true' && (
+                            {(process.env.REACT_APP_BLUEPRINT_ENABLED || 'false') === 'true' && (
                                 <MiniButtonClickable 
                                     icon={BluePrintSymbol}
                                     onPress={() => {setIsBluePrintMode(isBluePrintMode ? false : true)}}
@@ -631,7 +631,7 @@ When the user speaks in other languages than English, you must reply to them in 
                             >
                                 {getLocaleKey('editor.home.clearEntireHistory')}
                             </MiniButtonClickable>
-                            {process.env.REACT_APP_BLUEPRINT_ENABLED === 'true' && (
+                            {(process.env.REACT_APP_BLUEPRINT_ENABLED || 'false') === 'true' && (
                                 <MiniButtonClickable 
                                     icon={BluePrintSymbol}
                                     onPress={() => {setIsBluePrintMode(isBluePrintMode ? false : true); setShowMobileMenu(false);}}
